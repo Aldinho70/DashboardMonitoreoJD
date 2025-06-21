@@ -1,33 +1,48 @@
 export const env = {
-    token: "e1749cb44770905014c9e8957aff9e8952E1331623A334EC024A9B0DD2274367C12C2743",
+    token: "9755b3f50b30dd0d20c5088de1987da1E211D85BA3D0726F42986CD9B783F7B5E3EDC513",
     GroupsUnit: 'true',
         gruposInteres1: { /*El numero recomendado de de grupos son 5 por cada lado */
-            '03 CARGAS A SEGUIR':'A SEGUIR',
-            '05 TANQUES TICSA':'TANQUES',
-            '04 UNIDADES GRAL AFUERA': 'En transito',
+            /* HRH Izquierdo */
+                '01-CARGAS MEXICO':'Mexico',
+                '03-POLLO VIVO':'Pollo',
+                '04-CONGELADO':'Congelado',
+                '05-FRESCO':'Fresco',
+                '06-PARA MONITOREO':'Monitoreo',
+                'GR-AREA 3':'GR',
+            /* -------------------------- */
         },
         gruposInteres2: {
-            '01 UNIDADES VACIAS TFS/TCS': 'Vacias',
-            '02 UNIDADES CARGADAS TFS/TCS': 'Cargadas',
-            'UNIDADES EN CLIENTE TCS/TFS': 'Con cliente',
+            /* HRH Derecho */
+                '00-DIFEYRO':'Dyfeiro',
+                '02-CARGAS FORANEAS':'Foraneas',
+                'HRH CAJAS':'Cajas',
+                'HRH SEGURIDAD':'Dobles',
+                '08-HRH CAJAS PILGRIMS':'Pilgrims',
+            /* -------------------------- */
         },
-        StatusUnit: 'false',
+    StatusUnit: 'false',
         statusInteres: {
             'VACIO': 'VACIO',
             'CARGADO': 'CARGADO',
             'ESPERA_CARGA': ' CARGA',
             'ESPERA_DESCARGA': 'DESCARGA',
         }, 
-    Name_cajas: '',
-    grupoInteres_modules: {},
+    Name_cajas: 'TK-',
+    grupoInteres_modules: {
+        'Cajas': ['ralenti','warning' /*'apagadas', 'sin_conexion', 'movimiento'*/],
+        'Dobles': ['ralenti', 'apagadas', 'movimiento'],
+    },
     Temperature: 'false',
     Estatus: 'false',
     map:'false',
     img: { /* Opcional */
         
     },
-    bootstrap: { /* Opcional */ }
+    bootstrap: /* Opcional */ {
+        
+    }
+    
 }
 
-// Usuario: TICSA/TRAFUSA DESARROLLOS
-// Contrasena: Ticfusa-2024
+// Usuario: MONITOREO HRH
+// Contraseña: MONITOREO2022
