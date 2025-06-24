@@ -56,7 +56,7 @@
                         </button>
                     </li>
                     <li class="nav-item d-flex gap-2">
-                        <button class="btn btn-sm btn-secondary d-flex align-items-center position-relative" onclick="showModal('#modal-notificaciones');">
+                        <button class="btn btn-sm btn-secondary d-flex align-items-center position-relative rounded-5" onclick="showModal('#modal-notificaciones');">
                             <i class="bi bi-bell-fill me-2"></i> <!-- Icono de campana -->
                             Notificaciones
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cont_notificacion_gral" id="cont_notificacion">0</span>
@@ -66,7 +66,7 @@
                 <!-- Menu de opciones del usuario -->
                 <div class="ms-auto text-danger d-flex align-items-center">
                     <div class="btn-group me-3" role="group">
-                        <button type="button" class="btn btn-sm btn-warning dropdown-toggle" id="user_Wialon" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button type="button" class="btn btn-sm btn-warning dropdown-toggle rounded-5" id="user_Wialon" data-bs-toggle="dropdown" aria-expanded="false">
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" id="btn-logout" href="index.html">Cerrar sesion</a></li>
@@ -77,7 +77,7 @@
                     </div>
     
                     <!-- Botón de carga -->
-                    <button class="btn btn-sm btn-primary" type="button" disabled>
+                    <button class="btn btn-sm btn-primary rounded-5" type="button" disabled>
                         <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
                         <span id="timer" role="status">Se actualizará en 0 segundos...</span>
                     </button>
@@ -96,24 +96,24 @@
     <div class="content ">
         <div class="row">
             <!-- Operaciones -->
-            <div class="col-6 bg-light " id="root_button_module">
+            <div class="col-6 rounded-4 bg-light " id="root_button_module">
                 <div class="row ">
                     <div class="col-md-6 col-sm-12 btn-module" id="button_module1"></div>
                     <div class="col-md-6 col-sm-12 btn-module" id="button_module2"></div>
                 </div>
             </div>
             <!-- Tabla de unidades -->
-            <div class="col-3 border bg-secondary">
+            <div class="col-3 border rounded-4 bg-secondary">
                 <div class="text-center">
                     <span class="badge rounded-pill text-bg-secndary text center fs-6">Tabla de unidades</span>
                     <hr class="border border-light border-2 opacity-50">
                 </div>
-                <div class="scrollable-table">
+                <div class="scrollable-table rounded-4">
                     <table class="table table-striped " id="table-units2">
                         <thead>
-                            <tr>
+                            <!-- <tr>
                                 <th scope="col">Unidades</th>
-                            </tr>
+                            </tr> -->
                         </thead>
                         <tbody id="table-tbody"></tbody>
                     </table>
@@ -283,7 +283,7 @@
 
     <!-- Modal del mapa -->
     <div class="modal fade" id="dynamicModal" tabindex="-1" aria-labelledby="dynamicModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-xl">
           <div class="modal-content" id="modal-content">
             <!-- Contenido dinámico generado por JS -->
           </div>

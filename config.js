@@ -26,9 +26,7 @@ export const env = {
     Temperature: 'false',
     Estatus: 'false',
     map:'false',
-    img: { /* Opcional */
-        
-    },
+    img: { /* Opcional */ },
     bootstrap: { /* Opcional */ }
 }
 

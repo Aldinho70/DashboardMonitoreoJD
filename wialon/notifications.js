@@ -15,35 +15,48 @@ function showData(event) {
         var unit = getUnitById( data.unit );
 
         $("#notifi").prepend(`
-        <div class="alert alert-dark alert-dismissible fade show" id="${cont}" role="alert">
-            <div class="unidad d-flex align-items-center">
-                <h5 class="mb-0">
-                <span class="badge rounded-pill text-bg-light">${cont + 1}</span>
-                <img src="${unit.info.icon}" class="rounded me-2" alt="">
-                <strong>${unit.info.nameUnit}</strong>
-                <button type="button" class="btn-close btn-remove-alert-notificacion" data-bs-dismiss="alert" id="" aria-label="Close"></button>
-                </h5> 
-                <h4 class="ml-2 ms-auto p-2" >${data.name}</h4>
+            <div class="alert alert-dark bg-white border border-2 border-dark-subtle shadow rounded-3 p-4 position-relative fade show" id="${cont}" role="alert">
+
+                <!-- Encabezado -->
+                <div class="d-flex align-items-center mb-3 flex-wrap gap-3">
+                    <span class="badge rounded-pill bg-light text-dark fs-6">${cont + 1}</span>
+                    <img src="${unit.info.icon}" class="rounded" alt="icono unidad" style="width: 40px; height: 40px; object-fit: cover;">
+                    <h5 class="mb-0 fw-bold">${unit.info.nameUnit}</h5>
+
+                    <h5 class="ms-auto text-muted fw-semibold">${data.name}</h5>
+
+                    <button type="button" class="btn-close position-absolute top-0 end-0 m-3 btn-remove-alert-notificacion" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <!-- Contenido principal -->
+                <hr>
+                <p class="fs-5 text-dark mb-3">${data.txt}</p>
+                <hr>
+
+                <!-- Botones de acción -->
+                <div class="d-flex flex-wrap gap-2">
+                    <button type="button" class="btn btn-outline-danger btn-sm px-3 rounded-5" onclick="showMapNotifi(${data.x}, ${data.y});">
+                    <i class="bi bi-geo-alt-fill me-1"></i> Ver ubicación
+                    </button>
+
+                    <button type="button" class="btn btn-danger btn-sm px-3 rounded-5" onclick="handleNotifications(${cont}, '${unit.info.nameUnit}', '${data.t}', 'user_root');">
+                    <i class="bi bi-check-circle-fill me-1"></i> Atender
+                    </button>
+                </div>
             </div>
-            <hr>
-            <span >${data.txt}</span>
-            <hr>
-            <button type="button" class="btn btn-danger btn-sm " onclick="showMapNotifi(${data.x}, ${data.y});" >
-                Ver ubicacion
-            </button> 
-            <button type="button" class="btn btn-danger btn-sm " onclick="handleNotifications( ${cont}, '${unit.info.nameUnit}', '${data.t}', 'user_root' );" >
-                    Atender
-                </button>             
-            <br>           
-        </div>
         `);
 
         $("#cont_notificacion").text(cont + 1);
 
         $("#Toast_Notification").html(`
-            <div class="toast-header p-4">
-                <img src="${unit.info.icon}" class="rounded me-2" alt="" style="width: 48px; height: 48px;">
-                <strong class="text-break flex-grow-1 fs-5">${unit.info.nameUnit} — ${data.name}</strong>
+            <div class="toast-header">
+                <img src="${unit.info.icon}" class="rounded me-2" width="45" alt="...">
+                <strong class="me-auto fs-4">${unit.info.nameUnit}</strong>
+                <small>Ahora mismo</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body fs-5">
+                ${data.name}.
             </div>
         `);
 
