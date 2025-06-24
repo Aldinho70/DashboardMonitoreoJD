@@ -15,7 +15,6 @@ export const env = {
             'CARGADO': 'CARGADO',
             'ESPERA_CARGA': ' CARGA',
             'ESPERA_DESCARGA': 'DESCARGA',
-            'GR general':'GR general'
         }, 
     Temperature: 'false',
     Estatus: 'true',

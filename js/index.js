@@ -40,7 +40,8 @@ $( document ).ready( () =>{
     });
 
     setInterval(function () {
-        logout( _token );        
+        logout( _token );  
+        console.log('Actializando informacion...')      
     }, 1 * 60 * 1000);
 });
 

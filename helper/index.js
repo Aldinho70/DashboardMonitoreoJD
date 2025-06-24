@@ -18,7 +18,7 @@ export function create_button_module( data_group = {} ,data, id_tag, filter) {
 
             const _titulo = filter[titulo];
             const _status_remove = (env.grupoInteres_modules[_titulo]) ? env.grupoInteres_modules[_titulo] : [];
-            const _data = data[titulo]; console.log(data_group[titulo].info.icon)
+            const _data = data[titulo]; 
             const contApagadas = Object.keys(_data.apagadas).length;
             const contRalenti = Object.keys(_data.ralenti).length;
             const contMovimiento = Object.keys(_data.movimiento).length;
@@ -92,8 +92,8 @@ export function create_button_module( data_group = {} ,data, id_tag, filter) {
                         <div class="col-12 col-sm-6">
                             <button type="button"
                             class="btn w-100 rounded-5 d-flex align-items-center justify-content-center flex-grow-1 m-1 p-1 btn-secondary ${contSinConexion > 0 ? 'alert-btn btn-danger' : 'btn-secondary'} ${_status_remove.includes('sin_conexion') ? 'd-none' : ''}"
-                            id="btn-${titulo.replaceAll(" ", "_")}-sinconexion"
-                            onclick="getInfoUnits('${titulo}', 'sinconexion', '#btn-${titulo}-sinconexion'); removeClass_v2('#btn-${titulo.replaceAll(" ", "_")}-sinconexion', 'alert-btn btn-danger');"
+                            id="btn-${titulo.replace(/[\s\/]/g, "_")}-sinconexion"
+                            onclick="getInfoUnits('${titulo}', 'sinconexion', '#btn-${titulo}-sinconexion'); removeClass_v2('#btn-${titulo.replace(/[\s\/]/g, "_")}-sinconexion', 'alert-btn btn-danger');"
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Sin conexión">
                             <span class="font-monospace d-none d-lg-inline fs-6">Sin conexión</span>
                             <i class="bi bi-wifi-off d-lg-none"></i>
