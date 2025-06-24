@@ -40,7 +40,8 @@ $( document ).ready( () =>{
     });
 
     setInterval(function () {
-        logout( _token );        
+        logout( _token );  
+        console.log('Actializando informacion...')      
     }, 1 * 60 * 1000);
 });
 
@@ -88,7 +89,7 @@ export const _login = ( token ) =>{
                     .then( response => {
                         _groups = getStateConectionsUnitsbyGroups( response ); 
                         _groups = createHTML_PanelbyStatus( _groups );
-                        create_button_module( _groups, '#button_module2', env.gruposInteres1 );
+                        create_button_module( response, _groups, '#button_module2', env.gruposInteres1 );
         
                     })
                 }
@@ -98,7 +99,7 @@ export const _login = ( token ) =>{
                     .then( response => {
                         _groups = getStateConectionsUnitsbyGroups( response ); 
                         _groups = createHTML_PanelbyStatus( _groups );
-                        create_button_module( _groups, '#button_module1', env.gruposInteres2 );
+                        create_button_module( response, _groups, '#button_module1', env.gruposInteres2 );
         
                     })
                 }
@@ -131,7 +132,6 @@ export const getUnitById = ( id ) => {
 }
 
 const getGrupos = async ( groups ) => {
-    console.log( groups );    
     await groups.forEach(group => {
         const objeto = {
             info: getInfoGroup( group ),

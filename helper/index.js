@@ -11,78 +11,98 @@ export function createHTML_PanelbyStatus(data) {
     return objeto;
 }
 
-export function create_button_module(data, id_tag, filter) {
+export function create_button_module( data_group = {} ,data, id_tag, filter) {
     $(id_tag).empty();
     for (const titulo in data) {
         if (Object.keys(filter).includes(titulo)) {
 
             const _titulo = filter[titulo];
             const _status_remove = (env.grupoInteres_modules[_titulo]) ? env.grupoInteres_modules[_titulo] : [];
-            const _data = data[titulo];             
+            const _data = data[titulo]; 
             const contApagadas = Object.keys(_data.apagadas).length;
             const contRalenti = Object.keys(_data.ralenti).length;
             const contMovimiento = Object.keys(_data.movimiento).length;
             const contSinConexion = Object.keys(_data.sinconexion).length;
             const contWarning = Object.keys(_data.warning).length;
             const contGeneral = contApagadas + contRalenti + contMovimiento + contSinConexion + contWarning;
-            
+
             $(id_tag).append(`<!-- Grupo -->
-                <div class="toast fade show w-100 " role="alert" aria-live="assertive" aria-atomic="true" id="${_titulo.replaceAll(" ", "_")}">
-                    <div class="toast-header text-bg-ligth ${/*text-bg-${env.bootstrap[_titulo]}*/ ""}">
-                        ${env.img[_titulo] ? `<img class='img-fluid' src='${env.img[_titulo]}' alt='icon' width="25" id="img-${_titulo.replaceAll(" ", "_")}"/>` : ""}
-                        <button class="btn btn-light" onclick="getInfoUnits('${titulo}', 'general')">
+                <div class="toast fade show w-100 shadow rounded-4 rounded overflow-hidden mb-3" role="alert" aria-live="assertive" aria-atomic="true" id="${_titulo.replaceAll(" ", "_")}">
+                    <!-- Header -->
+                    <div class="toast-header  text-bg-light">
+                        ${env.img[_titulo]
+                    ? `<img src="${env.img[_titulo]}" alt="icon" class="me-2 img-fluid" width="35" id="img-${_titulo.replaceAll(" ", "_")}">`
+                    : `<img src="${data_group[titulo].info.icon}" alt="icon" class="img-fluid" width="35" id="img-${_titulo.replaceAll(" ", "_")}">`
+                }
+
+                        <button class="btn btn-light text-start flex-grow-1 rounded-5" onclick="getInfoUnits('${titulo}', 'general')">
                             <strong class="font-monospace me-auto fs-5 btn">
-                                ${_titulo} 
-                                <span class="badge bg-dark fs-6" id="${titulo}">${contGeneral}</span>
+                                ${_titulo}
+                                <span class="badge bg-dark fs-6 cont" id="${titulo}">${contGeneral}</span>
                             </strong>
                         </button>
-                        <small class="text-muted">
-                            <button type="button" 
-                                class="btn btn-warning p-1 ${ ( _status_remove.includes('ralenti')) ? 'd-none' : '' } " onclick="getInfoUnits('${titulo}', 'ralenti');">
-                                <span class="font- d-none d-xl-inline fs-6">Ralenti</span>  
-                                <i class="bi bi-bootstrap-reboot d-xl-none"></i>
-                                <span class="badge text-bg-secondary cont" id="cont-${titulo}-ralenti">${contRalenti}</span>
-                            </button>
-                            <button type="button" 
-                                class="btn btn-primary p-1 ${ ( _status_remove.includes('apagadas')) ? 'd-none' : '' } " onclick="getInfoUnits('${titulo}', 'apagadas')">
-                                <span class="font- d-none d-xl-inline fs-6">Apagadas</span>  
+
+                        <div class="d-flex gap-1 align-items-center ms-auto">
+                        <!-- Ralenti -->
+                        <button type="button" 
+                            class="btn btn-warning btn-sm rounded-4 p-1 ${_status_remove.includes('ralenti') ? 'd-none' : ''}" 
+                            onclick="getInfoUnits('${titulo}', 'ralenti');">
+                            <span class="d-none d-xl-inline fs-6">Ralenti</span>
+                            <i class="bi bi-bootstrap-reboot d-xl-none"></i>
+                            <span class="badge text-bg-secondary cont" id="cont-${titulo}-ralenti">${contRalenti}</span>
+                        </button>
+
+                        <!-- Apagadas -->
+                        <button type="button" 
+                            class="btn btn-primary btn-sm rounded-4 p-1 ${_status_remove.includes('apagadas') ? 'd-none' : ''}" 
+                            onclick="getInfoUnits('${titulo}', 'apagadas')">
+                            <span class="d-none d-xl-inline fs-6">Apagadas</span>
+                            <i class="bi bi-power d-xl-none"></i>
+                            <span class="badge text-bg-secondary cont" id="cont-${titulo}-apagadas">${contApagadas}</span>
+                        </button>
+
+                        <!-- Warning -->
+                        ${(_titulo == 'Dobles' || _titulo == 'Cajas')
+                    ? `<button type="button" class="btn btn-danger rounded-5 btn-sm p-1" onclick="getInfoUnits('${titulo}', 'warning')">
+                                <span class="d-none d-xl-inline fs-6">Unidad sin reportar</span>
                                 <i class="bi bi-power d-xl-none"></i>
-                                <span class="badge text-bg-secondary cont" id="cont-${titulo}-apagadas">${contApagadas}</span>                                    
-                            </button>
-                            <!--UNIDADES QUE LLEVAN DIAS SIN CONEXION-->
-                                ${ ( _titulo == 'Dobles' || _titulo == 'Cajas' ) 
-                                    ? `<button type="button" 
-                                        class="btn btn-danger p-1" onclick="getInfoUnits('${titulo}', 'warning')">
-                                        <span class="font- d-none d-xl-inline fs-6">Unidad sin reportar</span>  
-                                        <i class="bi bi-power d-xl-none"></i>
-                                        <span class="badge text-bg-dark cont" id="cont-${titulo}-warning">${contWarning}</span>                                    
-                                        </button>` 
-                                    : ''
-                                }
-                            <!--UNIDADES QUE LLEVAN DIAS SIN CONEXION-->
-                        </small>                                        
-                    </div>
-                    <div class="toast-body">
-                        <div class="d-flex justify-content-around flex-wrap border">
-                            <button type="button" 
-                                class="btn btn-success flex-grow-1 m-1 p-1 d-flex align-items-center justify-content-center ${ ( _status_remove.includes('movimiento')) ? 'd-none' : '' }"
-                                onclick="getInfoUnits('${titulo}', 'movimiento');" data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="Movimiento">
-                                <span class="font-monospace d-none d-lg-inline fs-6">Movimiento</span> 
-                                <i class="bi bi-arrow-right d-lg-none"></i>                                                
-                                <span class="font-monospace badge bg-dark cont ms-1 fs-6" id="cont-${titulo}-movimiento">${contMovimiento}</span>
-                            </button>
-                            <button type="button" id="btn-${titulo.replaceAll( " ", "_" )}-sinconexion"
-                                class="btn btn-secondary flex-grow-1 m-1 p-1 d-flex align-items-center justify-content-center ${contSinConexion > 0 ? "alert-btn btn-danger" : ""}" id="btn-${titulo.replaceAll(" ", "_" )}-sinconexion ${ ( _status_remove.includes('sin_conexion')) ? 'd-none' : '' } " 
-                                onclick="getInfoUnits('${titulo}', 'sinconexion', '#btn-${titulo}-sinconexion'); removeClass_v2('#btn-${titulo.replaceAll( " ", "_" )}-sinconexion', 'alert-btn btn-danger');"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Sin conexión">
-                                <span class="font-monospace d-none d-lg-inline fs-6">Sin conexión</span>
-                                <i class="bi bi-wifi-off d-lg-none"></i>
-                                <span class="font-monospace badge bg-dark cont ms-1 fs-6" id="cont-${titulo}-sinconexion">${contSinConexion}</span>
-                            </button>
+                                <span class="badge text-bg-dark cont" id="cont-${titulo}-warning">${contWarning}</span>
+                            </button>`
+                    : ''
+                }
                         </div>
                     </div>
-                </div>
+
+                    <!-- Body -->
+                    <div class="toast-body bg-light">
+                        <div class="row g-2">
+                        <!-- Movimiento -->
+                        <div class="col-12 col-sm-6">
+                            <button type="button"
+                            class="btn btn-success rounded-5 w-100 d-flex align-items-center justify-content-center flex-grow-1 m-1 p-1 ${_status_remove.includes('movimiento') ? 'd-none' : ''}"
+                            onclick="getInfoUnits('${titulo}', 'movimiento');"
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Movimiento">
+                            <span class="font-monospace d-none d-lg-inline fs-6">Movimiento</span>
+                            <i class="bi bi-arrow-right d-lg-none"></i>
+                            <span class="font-monospace badge bg-dark cont ms-1 fs-6" id="cont-${titulo}-movimiento">${contMovimiento}</span>
+                            </button>
+                        </div>
+
+                        <!-- Sin Conexión -->
+                        <div class="col-12 col-sm-6">
+                            <button type="button"
+                            class="btn w-100 rounded-5 d-flex align-items-center justify-content-center flex-grow-1 m-1 p-1 btn-secondary ${contSinConexion > 0 ? 'alert-btn btn-danger' : 'btn-secondary'} ${_status_remove.includes('sin_conexion') ? 'd-none' : ''}"
+                            id="btn-${titulo.replace(/[\s\/]/g, "_")}-sinconexion"
+                            onclick="getInfoUnits('${titulo}', 'sinconexion', '#btn-${titulo}-sinconexion'); removeClass_v2('#btn-${titulo.replace(/[\s\/]/g, "_")}-sinconexion', 'alert-btn btn-danger');"
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Sin conexión">
+                            <span class="font-monospace d-none d-lg-inline fs-6">Sin conexión</span>
+                            <i class="bi bi-wifi-off d-lg-none"></i>
+                            <span class="font-monospace badge bg-dark cont ms-1 fs-6" id="cont-${titulo}-sinconexion">${contSinConexion}</span>
+                            </button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
                 <!-- ----- -->
             `);
         }
@@ -97,51 +117,74 @@ export function create_table_module(data, id_table) {
         const html = `
         <tr>
             <td>
-                <div class="toast fade show w-100" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header">
-                        <img class="rounded me-2" src="${objeto.info.icon}" alt="Icon" width="24" height="24" />
+                <div class="toast fade show w-100 shadow border-0 rounded-3 overflow-hidden mb-3" role="alert" aria-live="assertive" aria-atomic="true">
+                <!-- Header -->
+                    <div class="toast-header bg-secondary bg-opacity-25 border-bottom">
+                        <img class="rounded me-2" src="${objeto.info.icon}" alt="Icon" width="35" height="35" />
+                        
                         <strong class="me-auto">
-                            <button type="button" class="btn btn-secondary btn-sm" onclick="getSelectedUnitInfo(${objeto.info.idUnit})">
+                            <button type="button" class="btn btn-secondary btn-sm rounded-5" onclick="getSelectedUnitInfo(${objeto.info.idUnit})">
                                 ${objeto.info.nameUnit}
                             </button>
                         </strong>
-                        <small class="text-muted">Ult MSJ: ${objeto.gps?.time ?? ""}</small>
+
+                        <small class="text-muted">Últ MSJ: ${objeto.gps?.time ?? ""}</small>
                     </div>
-                    <div class="toast-body">
+
+                    <!-- Body -->
+                    <div class="toast-body bg-light">
+                        <!-- Fila 1 -->
                         <div class="row mb-2">
-                            <div class="col-12 d-flex align-items-center flex-wrap">
-                                <span class="me-3 d-flex align-items-center">
-                                    <i class="bi bi-person-circle me-1 text-primary"></i>
-                                    <strong>${"JD"}</strong>
+                            <div class="col-12 d-flex align-items-center flex-wrap gap-3">
+                                
+                                <!-- Operador -->
+                                <span class="d-flex align-items-center">
+                                <i class="bi bi-person-circle me-1 text-primary"></i>
+                                <strong>${"JD"}</strong>
                                 </span>
-                                <span class="me-3 d-flex align-items-center">
-                                    <i class="bi bi-speedometer me-1 text-secondary"></i>
-                                    ${objeto.gps?.velocidad ?? 0} km/h
+
+                                <!-- Velocidad -->
+                                <span class="d-flex align-items-center">
+                                <i class="bi bi-speedometer me-1 text-secondary"></i>
+                                ${objeto.gps?.velocidad ?? 0} km/h
                                 </span>
-                                <span class="me-3 d-flex align-items-center">
-                                    <i class="bi bi-tools me-1 text-dark"></i>
-                                    ${objeto.personalizados?.equipo ?? "Sin equipo"}
+
+                                <!-- Equipo -->
+                                <span class="d-flex align-items-center">
+                                <i class="bi bi-tools me-1 text-dark"></i>
+                                ${objeto.personalizados?.equipo ?? "Sin equipo"}
                                 </span>
-                                <span class="me-3 d-flex align-items-center text-danger">
-                                    <i class="bi bi-lightning-charge me-1"></i>
-                                    ${Math.round(objeto.sensors?.voltaje ?? 0)} Volts
+
+                                <!-- Voltaje -->
+                                <span class="d-flex align-items-center text-danger">
+                                <i class="bi bi-lightning-charge me-1"></i>
+                                ${Math.round(objeto.sensors?.voltaje ?? 0)} Volts
                                 </span>
+
                             </div>
                         </div>
+
+                        <!-- Fila 2 -->
                         <div class="row">
-                            <div class="col-12 d-flex align-items-center flex-wrap">
-                                <span class="me-3 d-flex align-items-center">
+                            <div class="col-12 d-flex align-items-center flex-wrap gap-3">
+
+                                <!-- Batería -->
+                                <span class="d-flex align-items-center">
                                     <i class="bi bi-battery-charging me-1 text-success"></i>
                                     ${Math.round(objeto.sensors?.bateria ?? 100)} %
                                 </span>
-                                <span class="me-3 d-flex align-items-center">
+
+                                <!-- Ignición -->
+                                <span class="d-flex align-items-center">
                                     <i class="bi bi-ev-front me-1 text-info"></i>
                                     ${objeto.sensors?.ignicion ?? 1 ? "Encendido" : "Apagado"}
                                 </span>
+
                             </div>
                         </div>
                     </div>
                 </div>
+
             </td>
         </tr>`;
 
@@ -220,7 +263,7 @@ export function create_map_module_div(objeto) {
 }
 
 export function create_map_module_modal(objeto) {
-    console.log(objeto);
+    // console.log(objeto);
 
     // Generar contenido elegante para el modal
     $("#modal-content").html(`
@@ -256,11 +299,11 @@ export function create_map_module_modal(objeto) {
                 </tr>
                 <tr>
                   <th>Destino:</th>
-                  <td>${objeto.personalizados?.destino?.v ?? "Error de su campo personalizado" }</td>
+                  <td>${objeto.personalizados?.destino?.v ?? "Error de su campo personalizado"}</td>
                 </tr>
                 <tr>
                   <th>Estatus:</th>
-                  <td>${objeto.personalizados?.status?.v ?? "Error de su campo personalizado" }</td>
+                  <td>${objeto.personalizados?.status?.v ?? "Error de su campo personalizado"}</td>
                 </tr>
               </tbody>
             </table>
@@ -327,7 +370,7 @@ function getStateOnline(data) {
 
             if (Object.keys(_unit).length > 0) {
                 const conection = _unit.gps.State;
-                
+
                 const value = _unit.sensors.State;
 
                 if (conection === "Online") {
@@ -355,5 +398,5 @@ function getStateOnline(data) {
 }
 
 export function removeClass_v2(tag, className) {
-    $(tag).removeClass( className );
+    $(tag).removeClass(className);
 }
