@@ -1,7 +1,7 @@
-import { _login } from '../js/index.js';
+import { _login } from '../../../../index.js';
 import { getGPS, getInfo, getPersonalizados, getSensores } from './device.js'
-import { getAvl } from '../wialon/wialonAPI.js'
-import { showModal } from '../utils/utils.js'
+import { getAvl } from './wialonAPI.js'
+import { showModal } from '../../../utils/utils.js'
 
 export const getUnitsStatus = async (units) => {
 

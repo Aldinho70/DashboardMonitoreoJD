@@ -1,5 +1,5 @@
-import { getUnitById, _conexion, _token } from "../js/index.js";
-import { showModal } from "../utils/utils.js";
+import { getUnitById, _conexion, _token } from "../../../../index.js";
+import { showModal } from "../../../utils/utils.js";
 import {  logout  } from './wialonAPI.js'
 
 export const getFields = (idUnidad) =>{

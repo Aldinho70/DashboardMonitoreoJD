@@ -1,4 +1,4 @@
-import { env } from '../config.js';
+import { env } from '../../../../config.js';
 /* Objetos de una unidad */
     export const getInfo = (unidad) => {
         

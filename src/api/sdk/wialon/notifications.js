@@ -1,5 +1,5 @@
-import { getUnitById } from "../js/index.js";
-import { showToast, axiosPost } from "../utils/utils.js";
+import { getUnitById } from "../../../../index.js";
+import { showToast, axiosPost } from "../../../utils/utils.js";
 
 export function getNotifications( resource ) {
     for (var i = 0; i < resource.length; i++) { 
@@ -63,7 +63,7 @@ function showData(event) {
         showToast("#Toast_Notification");
         
         //Sonido de notificacion
-        var audio = new Audio('./mp3/livechat-129007.mp3');
+        var audio = new Audio('./src/assets/audio/livechat-129007.mp3');
         audio.play();
 
         // const objeto = {

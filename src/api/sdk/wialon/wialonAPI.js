@@ -1,5 +1,5 @@
 import { all_avl } from './spec.js';
-import { _login } from '../js/index.js';
+import { _login } from '../../../../index.js';
 import { loadLibraries } from './libraries.js';
 
 export const login = async ( token ) => {

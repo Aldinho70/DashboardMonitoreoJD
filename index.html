@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <title>Monitoreo Ticsa - Trafusa</title>
 
-    <link rel="icon" href="img/faviconjd.png" type="image/png" />
+    <link rel="icon" href="src/assets/img/faviconjd.png" type="image/png" />
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -27,10 +27,10 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <!-- css estaticos -->
-    <link rel="stylesheet" href="./css/index.css" />
-    <link rel="stylesheet" href="./css/events.css" />
-    <link rel="stylesheet" href="./css/alert-btn.css" />
-    <link rel="stylesheet" href="./css/groups.css" />
+    <link rel="stylesheet" href="./src/css/index.css" />
+    <link rel="stylesheet" href="./src/css/events.css" />
+    <link rel="stylesheet" href="./src/css/alert-btn.css" />
+    <link rel="stylesheet" href="./src/css/groups.css" />
 </head>
 
 <body class="bg-dark">
@@ -38,7 +38,7 @@
         <div class="container d-flex justify-content-between align-items-center">
             <!-- Logo a la izquierda -->
             <a class="navbar-brand text-warning" href="#">
-                <img src="img/logojd.png" alt="" width="30" height="24" class="d-inline-block align-text-top" />
+                <img src="src/assets/img/logojd.png" alt="" width="30" height="24" class="d-inline-block align-text-top" />
                 Jornada Digital
             </a>
     
@@ -87,7 +87,7 @@
         </div>
         <!-- Logo a la derecha -->
         <a class="navbar-brand text-warning" href="#">
-            <!-- <img src="img/logosetramex.png" alt=""  height="24" class="d-inline-block align-text-top" /> -->
+            <!-- <img src="src/assets/img/logosetramex.png" alt=""  height="24" class="d-inline-block align-text-top" /> -->
         </a>
     </nav>
     
@@ -136,7 +136,7 @@
                         <table class="table " id="table-info">
                             <thead>
                                 <tr>
-                                    <th scope="col"> <img src="img/logojd.png" width="24" alt=""> </th>
+                                    <th scope="col"> <img src="src/assets/img/logojd.png" width="24" alt=""> </th>
                                     <th scope="col">Informacion de la</th>
                                     <th scope="col"></th>
                                     <th scope="col"><button class="btn btn-secondary">Mas opciones</button></th>
@@ -170,6 +170,10 @@
             </div>
         </div>
     </div>
+
+    <!-- TEST DE MODALES INTERACTIVOS EN JS -->
+     <div id="root-modals"></div>
+    <!-- TEST DE MODALES INTERACTIVOS EN JS -->
 
     <!-- ----------------------------------------------------------- -->
     <!-- MODALES -->
@@ -280,18 +284,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal del mapa -->
-    <div class="modal fade" id="dynamicModal" tabindex="-1" aria-labelledby="dynamicModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content" id="modal-content">
-            <!-- Contenido dinámico generado por JS -->
-          </div>
-        </div>
-      </div>
-      
-      
-    <!-- -------------- -->
 
      <!-- Estatus de las unidades  -->
     <div class="modal " tabindex="-1" id="modal-estatus">
@@ -451,16 +443,16 @@
     <!-- ---------------------------------------------------------------------------- -->
 
     <!-- Toast flotante de notificaciones entrantes -->
-    <div class="toast-container position-fixed top-0 end-0 p-3">
+    <div class="toast-container position-fixed top-0 end-0 pt-3">
         <div class="mt-5"></div>
-        <div id="Toast_Notification" class="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
+        <div id="Toast_Notification" class="toast fade w-100 bg-waring" role="alert" aria-live="assertive" aria-atomic="true"></div>
     </div>
 
     <!--Toast flotante de bienvenida al monitorista  -->
     <div class="toast-container bg-secondary top-50 start-50 translate-middle">
         <div id="WelcomeMonitorista" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
-                <img src="./img/logojd.png" alt="" width="50" height="50" class="d-inline-block align-text-top">
+                <img src="./src/assets/img/logojd.png" alt="" width="50" height="50" class="d-inline-block align-text-top">
                 <strong class="me-auto fs-3">Bienvenido <span
                         class="badge rounded-pill text-bg-warning monitorista"></span></strong>
 
@@ -476,7 +468,7 @@
     <div class="toast-container bg-secondary top-0 start-0">
         <div id="NotificacionAtendida" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
-                <img src="./img/logojd.png" alt="" width="50" height="50" class="d-inline-block align-text-top">
+                <img src="./src/assets/img/logojd.png" alt="" width="50" height="50" class="d-inline-block align-text-top">
                 <strong class="me-auto fs-3">Notificion atendida</strong>
 
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -491,7 +483,7 @@
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="welcomeinit" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
-                <img src="./img/logojd.png" width="30" height="24" class="rounded me-2 " alt="...">
+                <img src="./src/assets/img/logojd.png" width="30" height="24" class="rounded me-2 " alt="...">
                 <strong class="me-auto">Bienvenido</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
@@ -522,6 +514,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
     <!-- datatables -->
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.min.js"></script>
@@ -533,8 +528,8 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- estaticos -->
-    <script src="js/index.js" type="module"></script>
-    <script src="js/eventsTable.js"></script>
+    <script src="index.js" type="module"></script>    
+    <script src="./src/components/ModuleMap/Map/Map.js" type="module"></script>    
     <!-- <script src="./helper/events.js"></script> -->
 </body>
 

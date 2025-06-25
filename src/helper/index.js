@@ -1,5 +1,5 @@
 // import { removeClass } from "../utils/utils.js";
-import { env } from "../config.js";
+import { env } from "../../config.js";
 
 export function createHTML_PanelbyStatus(data) {
     let objeto = {};
@@ -192,145 +192,145 @@ export function create_table_module(data, id_table) {
     }
 }
 
-export function create_map_module_div(objeto) {
-    $("#map").html(`
-        <iframe
-            width="100%" height="100%" frameborder="0" style="border:0"
-            src="https://maps.google.com/maps?q=${objeto.gps.longitud},${objeto.gps.latitud}&output=embed" allowfullscreen>
-        </iframe>
-    `);
+// export function create_map_module_div(objeto) {
+//     $("#map").html(`
+//         <iframe
+//             width="100%" height="100%" frameborder="0" style="border:0"
+//             src="https://maps.google.com/maps?q=${objeto.gps.longitud},${objeto.gps.latitud}&output=embed" allowfullscreen>
+//         </iframe>
+//     `);
 
-    $("#table-info").html(`
-        <thead>
-                <tr>
-                    <th scope="col"> <img src="${objeto.info.icon}" width="24" alt=""> </th>
-                    <th scope="col">${objeto.info.nameUnit}</th>
-                    <th scope="col"></th>
-                    <th scope="col">
-                        <div class="btn-group dropup auto-ms" role="group">
-                            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                Opciones
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <button type="button" class="dropdown-item " id="btn-campospers" onclick="getFields(${objeto.personalizados.id})">
-                                        Campos personalizados
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="dropdown-item " id="btn-mapear" onclick="getSensores(${objeto.personalizados.id})">
-                                        Sensores
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="dropdown-item " id="btn-mapear" onclick="getRecorridoUnit(${objeto.personalizados.id})">
-                                        Mapear recorrido
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="dropdown-item " id="btn-mapear" onclick="getMensajes(${objeto.personalizados.id})">
-                                        Ultimos mensajes
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">Origen:</th>
-                    <td colspan="4">${objeto.personalizados?.origen.v ?? 'Error  de su campo personalizado'}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Destino:</th>
-                    <td colspan="4">${objeto.personalizados?.destino.v ?? 'Error de su campo personalizado'}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Estatus:</th>
-                    <td colspan="4">${objeto.personalizados?.status.v ?? 'Error  de su campo personalizado'}</td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-    `);
-}
+//     $("#table-info").html(`
+//         <thead>
+//                 <tr>
+//                     <th scope="col"> <img src="${objeto.info.icon}" width="24" alt=""> </th>
+//                     <th scope="col">${objeto.info.nameUnit}</th>
+//                     <th scope="col"></th>
+//                     <th scope="col">
+//                         <div class="btn-group dropup auto-ms" role="group">
+//                             <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+//                                 Opciones
+//                             </button>
+//                             <ul class="dropdown-menu">
+//                                 <li>
+//                                     <button type="button" class="dropdown-item " id="btn-campospers" onclick="getFields(${objeto.personalizados.id})">
+//                                         Campos personalizados
+//                                     </button>
+//                                 </li>
+//                                 <li>
+//                                     <button type="button" class="dropdown-item " id="btn-mapear" onclick="getSensores(${objeto.personalizados.id})">
+//                                         Sensores
+//                                     </button>
+//                                 </li>
+//                                 <li>
+//                                     <button type="button" class="dropdown-item " id="btn-mapear" onclick="getRecorridoUnit(${objeto.personalizados.id})">
+//                                         Mapear recorrido
+//                                     </button>
+//                                 </li>
+//                                 <li>
+//                                     <button type="button" class="dropdown-item " id="btn-mapear" onclick="getMensajes(${objeto.personalizados.id})">
+//                                         Ultimos mensajes
+//                                     </button>
+//                                 </li>
+//                             </ul>
+//                         </div>
+//                     </th>
+//                     <th scope="col"></th>
+//                 </tr>
+//             </thead>
+//             <tbody>
+//                 <tr>
+//                     <th scope="row">Origen:</th>
+//                     <td colspan="4">${objeto.personalizados?.origen.v ?? 'Error  de su campo personalizado'}</td>
+//                 </tr>
+//                 <tr>
+//                     <th scope="row">Destino:</th>
+//                     <td colspan="4">${objeto.personalizados?.destino.v ?? 'Error de su campo personalizado'}</td>
+//                 </tr>
+//                 <tr>
+//                     <th scope="row">Estatus:</th>
+//                     <td colspan="4">${objeto.personalizados?.status.v ?? 'Error  de su campo personalizado'}</td>
+//                 </tr>
+//                 <tr>
+//                     <th scope="row"></th>
+//                     <td></td>
+//                     <td></td>
+//                     <td></td>
+//                     <td></td>
+//                 </tr>
+//             </tbody>
+//     `);
+// }
 
-export function create_map_module_modal(objeto) {
-    // console.log(objeto);
+// export function create_map_module_modal(objeto) {
+//     // console.log(objeto);
 
-    // Generar contenido elegante para el modal
-    $("#modal-content").html(`
-      <div class="modal-header bg-dark text-white">
-        <h5 class="modal-title">🚗 Información de la Unidad</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!-- Mapa -->
-        <div id="map" class=" rounded overflow-hidden shadow-sm">
-            <iframe 
-                class="rounded"
-                width="100%" height="100%" frameborder="0" style="border:0"
-                src="https://maps.google.com/maps?q=${objeto.gps.longitud},${objeto.gps.latitud}&t=k&output=embed" 
-                allowfullscreen>
-            </iframe>
-        </div>
+//     // Generar contenido elegante para el modal
+//     $("#modal-content").html(`
+//       <div class="modal-header bg-dark text-white">
+//         <h5 class="modal-title">🚗 Información de la Unidad</h5>
+//         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+//       </div>
+//       <div class="modal-body">
+//         <!-- Mapa -->
+//         <div id="map" class=" rounded overflow-hidden shadow-sm">
+//             <iframe 
+//                 class="rounded"
+//                 width="100%" height="100%" frameborder="0" style="border:0"
+//                 src="https://maps.google.com/maps?q=${objeto.gps.longitud},${objeto.gps.latitud}&t=k&output=embed" 
+//                 allowfullscreen>
+//             </iframe>
+//         </div>
   
-        <!-- Información en tabla -->
-        <div class="card shadow-sm">
-          <div class="card-header bg-secondary text-white">
-            <div class="d-flex align-items-center">
-              <img src="${objeto.info.icon}" class="rounded-circle me-2" width="32" alt="">
-              <h6 class="mb-0">${objeto.info.nameUnit}</h6>
-            </div>
-          </div>
-          <div class="card-body p-3">
-            <table class="table table-hover table-bordered">
-              <tbody>
-                <tr>
-                  <th>Origen:</th>
-                  <td>${objeto.personalizados?.origen?.v ?? "Error de su campo personalizado"}</td>
-                </tr>
-                <tr>
-                  <th>Destino:</th>
-                  <td>${objeto.personalizados?.destino?.v ?? "Error de su campo personalizado"}</td>
-                </tr>
-                <tr>
-                  <th>Estatus:</th>
-                  <td>${objeto.personalizados?.status?.v ?? "Error de su campo personalizado"}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+//         <!-- Información en tabla -->
+//         <div class="card shadow-sm">
+//           <div class="card-header bg-secondary text-white">
+//             <div class="d-flex align-items-center">
+//               <img src="${objeto.info.icon}" class="rounded-circle me-2" width="32" alt="">
+//               <h6 class="mb-0">${objeto.info.nameUnit}</h6>
+//             </div>
+//           </div>
+//           <div class="card-body p-3">
+//             <table class="table table-hover table-bordered">
+//               <tbody>
+//                 <tr>
+//                   <th>Origen:</th>
+//                   <td>${objeto.personalizados?.origen?.v ?? "Error de su campo personalizado"}</td>
+//                 </tr>
+//                 <tr>
+//                   <th>Destino:</th>
+//                   <td>${objeto.personalizados?.destino?.v ?? "Error de su campo personalizado"}</td>
+//                 </tr>
+//                 <tr>
+//                   <th>Estatus:</th>
+//                   <td>${objeto.personalizados?.status?.v ?? "Error de su campo personalizado"}</td>
+//                 </tr>
+//               </tbody>
+//             </table>
+//           </div>
+//         </div>
   
-        <!-- Opciones -->
-        <div class="mt-4">
-          <div class="btn-group dropup w-100">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              Opciones
-            </button>
-            <ul class="dropdown-menu w-100">
-              <li><button class="dropdown-item" onclick="getFields(${objeto.personalizados.id})">Campos personalizados</button></li>
-              <li><button class="dropdown-item" onclick="getSensores(${objeto.personalizados.id})">Sensores</button></li>
-              <li><button class="dropdown-item" onclick="getRecorridoUnit(${objeto.personalizados.id})">Mapear recorrido</button></li>
-              <li><button class="dropdown-item" onclick="getMensajes(${objeto.personalizados.id})">Últimos mensajes</button></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    `);
+//         <!-- Opciones -->
+//         <div class="mt-4">
+//           <div class="btn-group dropup w-100">
+//             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+//               Opciones
+//             </button>
+//             <ul class="dropdown-menu w-100">
+//               <li><button class="dropdown-item" onclick="getFields(${objeto.personalizados.id})">Campos personalizados</button></li>
+//               <li><button class="dropdown-item" onclick="getSensores(${objeto.personalizados.id})">Sensores</button></li>
+//               <li><button class="dropdown-item" onclick="getRecorridoUnit(${objeto.personalizados.id})">Mapear recorrido</button></li>
+//               <li><button class="dropdown-item" onclick="getMensajes(${objeto.personalizados.id})">Últimos mensajes</button></li>
+//             </ul>
+//           </div>
+//         </div>
+//       </div>
+//     `);
 
-    // Mostrar el modal
-    const modal = new bootstrap.Modal(document.getElementById("dynamicModal"));
-    modal.show();
-}
+//     // Mostrar el modal
+//     const modal = new bootstrap.Modal(document.getElementById("dynamicModal"));
+//     modal.show();
+// }
 
 export function create_select_units(data) {
     for (const unit in data) {

@@ -13,6 +13,7 @@ export const env = {
             '02 UNIDADES CARGADAS TFS/TCS': 'Cargadas',
             'UNIDADES EN CLIENTE TCS/TFS': 'Con cliente',
             '04 UNIDADES GRAL AFUERA': 'En transito',
+            'CD JUAREZ': 'Juarez',
         },
         StatusUnit: 'false',
         statusInteres: {
@@ -27,7 +28,11 @@ export const env = {
     Estatus: 'false',
     map:'false',
     img: { /* Opcional */ },
-    bootstrap: { /* Opcional */ }
+    bootstrap: { /* Opcional 'A SEGUIR': './img/ticsa.png',*/ },
+    map_module: {
+        map : true,
+        detail: true,
+    }
 }
 
 // Usuario: TICSA/TRAFUSA DESARROLLOS
