@@ -34,19 +34,19 @@
 </head>
 
 <body class="bg-dark">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="">
         <div class="container d-flex justify-content-between align-items-center">
             <!-- Logo a la izquierda -->
             <a class="navbar-brand text-warning" href="#">
                 <img src="src/assets/img/logojd.png" alt="" width="30" height="24" class="d-inline-block align-text-top" />
                 Jornada Digital
             </a>
-    
+
             <!-- Btn de colapsar navbar -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-    
+
             <!-- Menú colapsable con opciones -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -75,7 +75,7 @@
                         <span id="token" style="display: none;"></span>
                         <span id="session_finish" style="display: none;"></span>
                     </div>
-    
+
                     <!-- Botón de carga -->
                     <button class="btn btn-sm btn-primary rounded-5" type="button" disabled>
                         <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
@@ -83,14 +83,13 @@
                     </button>
                 </div>
             </div>
-    
+
         </div>
         <!-- Logo a la derecha -->
         <a class="navbar-brand text-warning" href="#">
             <!-- <img src="src/assets/img/logosetramex.png" alt=""  height="24" class="d-inline-block align-text-top" /> -->
         </a>
     </nav>
-    
 
     <!-- Contenido principal -->
     <div class="content ">
@@ -175,25 +174,13 @@
      <div id="root-modals"></div>
     <!-- TEST DE MODALES INTERACTIVOS EN JS -->
 
+    <!-- TEST DE TOAST INTERACTIVOS EN JS -->
+     <div id="root-toast"></div>
+    <!-- TEST DE TOAST INTERACTIVOS EN JS -->
+
     <!-- ----------------------------------------------------------- -->
     <!-- MODALES -->
-    <!-- Notificaciones  -->
-        <div class="modal " tabindex="-1" id="modal-notificaciones">
-            <div class="modal-dialog modal-dialog-scrollable modal-lg">
-                <div class="modal-content ">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Notificaciones <span class="cont-notifiaciones"></span></h5>
-                        <button type="button" class="btn btn-close bg-danger " data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" id="notifi">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    <!-- ----------- -->
-
+    
     <!-- Temperaturas  -->
         <div class="modal " tabindex="-1" id="modal-temperatura">
             <div class="modal-dialog modal-dialog-scrollable modal-lg">
@@ -213,7 +200,7 @@
                                 </tr>
                             </thead>
                             <tbody id="table-body-temperature">
-                                
+
                             </tbody>
                         </table>
                     </div>
@@ -351,7 +338,7 @@
             </div>
         </div>
     </div>
-     
+
     <!-- Estatus de las unidades  -->
     <div class="modal fade" tabindex="-1" id="modal-search_units">
         <div class="modal-dialog modal-dialog-centered">
@@ -365,7 +352,7 @@
                 </div>
                 <button type="button" class="btn btn-primary" id="btn_search_select_unit" onclick="getOptionSelectUnitSearch();">
                     Buscar unidad
-                </button>                
+                </button>
             </div>
         </div>
     </div>
@@ -441,13 +428,7 @@
         </div>
     </div>
     <!-- ---------------------------------------------------------------------------- -->
-
-    <!-- Toast flotante de notificaciones entrantes -->
-    <div class="toast-container position-fixed top-0 end-0 pt-3">
-        <div class="mt-5"></div>
-        <div id="Toast_Notification" class="toast fade w-100 bg-waring" role="alert" aria-live="assertive" aria-atomic="true"></div>
-    </div>
-
+     
     <!--Toast flotante de bienvenida al monitorista  -->
     <div class="toast-container bg-secondary top-50 start-50 translate-middle">
         <div id="WelcomeMonitorista" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -493,13 +474,7 @@
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <span class="text-footer">© 2024 DIseñado por JMBobadilla y NullPointer para uso exclusivo de Jornada
-                Digital 🛰</span>
-        </div>
-    </footer>
-
+    <footer class="footer" id="root-footer"></footer>
     <!-- Wialon -->
     <script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="//hst-api.wialon.com/wsdk/script/wialon.js"></script>
@@ -516,7 +491,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    
+
     <!-- datatables -->
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.min.js"></script>
@@ -528,8 +503,9 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- estaticos -->
-    <script src="index.js" type="module"></script>    
-    <script src="./src/components/ModuleMap/Map/Map.js" type="module"></script>    
+    <script src="index.js" type="module"></script>
+    <script src="./src/components/ModuleMap/Map/Map.js" type="module"></script>
+    <script src="./src/components/Footer/Footer.js" type="module"></script>
     <!-- <script src="./helper/events.js"></script> -->
 </body>
 

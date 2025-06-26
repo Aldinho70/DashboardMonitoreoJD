@@ -18,9 +18,7 @@ $(() => {
 
 export const create_map_module_modal = async (objeto) => {
     const unit_messages = await MessagesService.loadMessagesToday(objeto.info.idUnit);
-    console.log(unit_messages);
-
-
+    
     // Generar contenido elegante para el modal
     $("#root_map_module").html(`
       <div class="modal-header bg-dark text-white">
@@ -57,7 +55,7 @@ export const create_map_module_modal = async (objeto) => {
       </div>
     `);
     
-    MapTrip(unit_messages);
+    // MapTrip(unit_messages);
     showModal('#root-map-modal')
     $('#root-map-modal').on('shown.bs.modal', async function () {
     const unit_messages = await MessagesService.loadMessagesToday(objeto.info.idUnit);

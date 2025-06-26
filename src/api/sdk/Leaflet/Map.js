@@ -14,7 +14,7 @@ class Map {
     }
 
     renderRecorrido(idDiv, coordenadas) {
-        this.destroyMap(); // 👈 Limpieza antes de reiniciar
+        this.destroyMap();
 
         this.map = L.map(idDiv).setView(coordenadas[0], 13);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

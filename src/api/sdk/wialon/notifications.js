@@ -1,30 +1,71 @@
 import { getUnitById } from "../../../../index.js";
 import { showToast, axiosPost } from "../../../utils/utils.js";
 
+$( () => {
+    $(`#root-modals`).append(initModalNotifations);
+
+    $(`#root-toast`).append(initToastNotifications);
+}) 
+
 export function getNotifications( resource ) {
     for (var i = 0; i < resource.length; i++) { 
-        resource[i].addListener("messageRegistered", showData); 
+        resource[i].addListener("messageRegistered", processNotification); 
     }
 }
 
-function showData(event) {
+function processNotification(event) {
     const data = event.getData(); // get data from event
     const cont = parseInt($("#cont_notificacion").text());    
 
     if (data.tp && data.tp == "unm") {
         var unit = getUnitById( data.unit );
 
-        $("#notifi").prepend(`
-            <div class="alert alert-dark bg-white border border-2 border-dark-subtle shadow rounded-3 p-4 position-relative fade show" id="${cont}" role="alert">
+        $("#root-notification").prepend( addNotificationModal(unit, data, cont) );
+
+        $("#cont_notificacion").text(cont + 1);
+
+        $("#Toast_Notification").html(addNotificationToast(unit, data));
+
+        showToast("#Toast_Notification");
+        
+        //Sonido de notificacion
+        var audio = new Audio('./src/assets/audio/livechat-129007.mp3');
+        audio.play();        
+    }
+}
+
+const initModalNotifations = () => {
+    return `<div class="modal " tabindex="-1" id="modal-notificaciones">
+                <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                    <div class="modal-content ">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Notificaciones <span class="cont-notifiaciones"></span></h5>
+                            <button type="button" class="btn btn-close bg-danger " data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="root-notification"></div>
+                    </div>
+                </div>
+            </div>`
+}
+
+const initToastNotifications = () => {
+    return `<div class="toast-container position-fixed top-0 end-0 pt-3">
+                <div class="mt-5"></div>
+                <div id="Toast_Notification" class="toast fade w-100 bg-waring" role="alert" aria-live="assertive" aria-atomic="true"></div>
+            </div>`;
+}
+
+const addNotificationModal = (unit, data, cont) => {
+    return `<div class="alert alert-dark bg-white border border-2 border-dark-subtle shadow rounded-3 p-4 position-relative fade show" id="${cont}" role="alert">
 
                 <!-- Encabezado -->
                 <div class="d-flex align-items-center mb-3 flex-wrap gap-3">
                     <span class="badge rounded-pill bg-light text-dark fs-6">${cont + 1}</span>
-                    <img src="${unit.info.icon}" class="rounded" alt="icono unidad" style="width: 40px; height: 40px; object-fit: cover;">
+                    <img src="${unit.info?.icon ?? ''}" class="rounded" alt="icono unidad" style="width: 40px; height: 40px; object-fit: cover;">
                     <h5 class="mb-0 fw-bold">${unit.info.nameUnit}</h5>
 
                     <h5 class="ms-auto text-muted fw-semibold">${data.name}</h5>
-
                     <button type="button" class="btn-close position-absolute top-0 end-0 m-3 btn-remove-alert-notificacion" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
 
@@ -43,13 +84,11 @@ function showData(event) {
                     <i class="bi bi-check-circle-fill me-1"></i> Atender
                     </button>
                 </div>
-            </div>
-        `);
+            </div>`;
+}
 
-        $("#cont_notificacion").text(cont + 1);
-
-        $("#Toast_Notification").html(`
-            <div class="toast-header">
+const addNotificationToast = (unit, data) => {
+    return `<div class="toast-header">
                 <img src="${unit.info.icon}" class="rounded me-2" width="45" alt="...">
                 <strong class="me-auto fs-4">${unit.info.nameUnit}</strong>
                 <small>Ahora mismo</small>
@@ -57,16 +96,11 @@ function showData(event) {
             </div>
             <div class="toast-body fs-5">
                 ${data.name}.
-            </div>
-        `);
+            </div>`;
+}
 
-        showToast("#Toast_Notification");
-        
-        //Sonido de notificacion
-        var audio = new Audio('./src/assets/audio/livechat-129007.mp3');
-        audio.play();
-
-        // const objeto = {
+const atendAlertBD = () => {
+    // const objeto = {
         //     name_user: name_user,
         //     name_unidad: unit.getName(),
         //     name_alert: data.name,
@@ -78,7 +112,6 @@ function showData(event) {
         // };
 
         // axiosPost( './php/insert_Notificaciones.php', objeto )
-    }
 }
 
 export function handleNotifications(id, unidad, timestamp, name_user) {
