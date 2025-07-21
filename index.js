@@ -1,17 +1,19 @@
 /* imports */
-import { env } from '../config.js'
-import { getToken } from '../wialon/token.js'
-import { showModal, removeClass } from '../utils/utils.js'
-import { login, getAvl, logout  } from '../wialon/wialonAPI.js'
-import { getFields, setProperties  } from '../wialon/personalizados.js'
-import { getInfoGroup, getUnitsGroup } from '../wialon/groups.js'
-import { getUnitsStatus, create_status_module } from '../wialon/statusUnit.js'
-import { getNotifications, handleNotifications } from '../wialon/notifications.js';
-import { getTemperature, create_modal_temperature } from '../wialon/temperature.js'
-import { getGPS, getInfo, getPersonalizados, getSensores, getState } from '../wialon/device.js'
-import { getStateConectionsUnits, getStateConectionsUnitsbyStatus, getStateConectionsUnitsbyGroups } from '../wialon/statusConections.js'
-import { createHTML_PanelbyStatus, create_button_module, create_table_module, create_map_module_modal, config_modules, create_select_units, removeClass_v2} from '../helper/index.js'
+import { env } from './config.js'
+import { getToken } from './src/api/sdk/wialon/token.js'
+import { showModal, removeClass } from './src/utils/utils.js'
+import { login, getAvl, logout  } from './src/api/sdk/wialon/wialonAPI.js'
+import { getFields, setProperties  } from './src/api/sdk/wialon/personalizados.js'
+import { getInfoGroup, getUnitsGroup } from './src/api/sdk/wialon/groups.js'
+import { getUnitsStatus, create_status_module } from './src/api/sdk/wialon/statusUnit.js'
+import { getNotifications, handleNotifications } from './src/api/sdk/wialon/notifications.js';
+import { getTemperature, create_modal_temperature } from './src/api/sdk/wialon/temperature.js'
+import { getGPS, getInfo, getPersonalizados, getSensores, getState } from './src/api/sdk/wialon/device.js'
+import { getStateConectionsUnits, getStateConectionsUnitsbyStatus, getStateConectionsUnitsbyGroups } from './src/api/sdk/wialon/statusConections.js'
+import { createHTML_PanelbyStatus, create_button_module, create_table_module, /*create_map_module_modal,*/ config_modules, create_select_units, removeClass_v2} from './src/helper/index.js'
 /* ------- */
+
+import { create_map_module_modal } from './src/components/ModuleMap/Map/Map.js';
 
 window.showModal = showModal;
 window.getFields = getFields;

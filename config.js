@@ -3,6 +3,7 @@ export const env = {
     GroupsUnit: 'true',
         gruposInteres1: { /*El numero recomendado de de grupos son 5 por cada lado */
             /* HRH Izquierdo */
+                'GRUPO HRH':'HRH GENERAL',
                 '01-CARGAS MEXICO':'Mexico',
                 '03-POLLO VIVO':'Pollo',
                 '04-CONGELADO':'Congelado',
@@ -13,11 +14,13 @@ export const env = {
         },
         gruposInteres2: {
             /* HRH Derecho */
-                '00-DIFEYRO':'Dyfeiro',
                 '02-CARGAS FORANEAS':'Foraneas',
                 'HRH CAJAS':'Cajas',
                 'HRH SEGURIDAD':'Dobles',
                 '08-HRH CAJAS PILGRIMS':'Pilgrims',
+                'DIFEYRO MIGRACION MEERKAT':'Dyfeiro',
+                '00-DIFEYRO SEGURIDAD':'Dyfeiro_Dobles',
+                '00-CAJAS DIFEYRO':'Dyfeiro Cajas',
             /* -------------------------- */
         },
     StatusUnit: 'false',
@@ -31,6 +34,7 @@ export const env = {
     grupoInteres_modules: {
         'Cajas': ['ralenti','warning' /*'apagadas', 'sin_conexion', 'movimiento'*/],
         'Dobles': ['ralenti', 'apagadas', 'movimiento'],
+        'Dyfeiro_Dobles': ['ralenti', 'apagadas', 'movimiento'],
     },
     Temperature: 'false',
     Estatus: 'false',
@@ -45,4 +49,4 @@ export const env = {
 }
 
 // Usuario: MONITOREO HRH
-// Contraseña: MONITOREO2022
+// Contrase単a: MONITOREO2022
