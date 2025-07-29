@@ -14,21 +14,26 @@ export const getUnitsGroup = ( group ) => {
 }
 
 function initUnit(unitsGoups) {
+    // console.log('initUnit', unitsGoups);
+    
     const units = {};
-    unitsGoups.forEach( Element => {
-        const unit = conexion.getItem( Element );
-        if ( unit ) {
-            const objeto = {
-                info: getInfo(unit),
-                sensors: getSensores(unit),
-                personalizados: getPersonalizados(unit),
-                gps: getGPS(unit),
+    if(unitsGoups){
+        unitsGoups.forEach( Element => {
+            const unit = conexion.getItem( Element );
+            if ( unit ) {
+                const objeto = {
+                    info: getInfo(unit),
+                    sensors: getSensores(unit),
+                    personalizados: getPersonalizados(unit),
+                    gps: getGPS(unit),
+                }
+                getState( objeto );
+    
+                units[unit.getName()] = objeto;
             }
-            getState( objeto );
-
-            units[unit.getName()] = objeto;
-        }
-        
-    })
+            
+        })
+    }
+    
     return units;
 }   
