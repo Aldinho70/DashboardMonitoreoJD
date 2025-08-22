@@ -7,9 +7,7 @@ $(() => {
         <!-- Modal del mapa -->
         <div class="modal fade" id="root-map-modal" tabindex="-1" aria-labelledby="root-map-modalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
-                <div class="modal-content" id="root_map_module">
-                    <!-- Contenido dinámico generado por JS -->
-                </div>
+                <div class="modal-content" id="root_map_module"></div>
             </div>
         </div>
     <!-- Modal del mapa -->

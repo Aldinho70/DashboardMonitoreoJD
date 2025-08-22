@@ -5,6 +5,8 @@ $( () => {
     $(`#root-modals`).append(initModalNotifations);
 
     $(`#root-toast`).append(initToastNotifications);
+
+    $(`#root-toast`).append(initToastNotificationsAtends);
 }) 
 
 export function getNotifications( resource ) {
@@ -53,6 +55,21 @@ const initToastNotifications = () => {
     return `<div class="toast-container position-fixed top-0 end-0 pt-3">
                 <div class="mt-5"></div>
                 <div id="Toast_Notification" class="toast fade w-100 bg-waring" role="alert" aria-live="assertive" aria-atomic="true"></div>
+            </div>`;
+}
+
+const initToastNotificationsAtends = () => {
+    return `<div class="toast-container bg-secondary top-0 start-0">
+                <div id="NotificacionAtendida" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header d-flex flex-row gap-3">
+                        <img src="./src/assets/img/logojd.png" alt="" width="35" height="35" class="d-inline-block align-text-top">
+                        <strong class="me-auto fs-5">Notificacion atendida</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body text-center">
+                        <Strong class="fs-6" id="name_unit_notifi_atendida"> </Strong>
+                    </div>
+                </div>
             </div>`;
 }
 

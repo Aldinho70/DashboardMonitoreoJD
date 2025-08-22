@@ -11,12 +11,11 @@ export function createHTML_PanelbyStatus(data) {
     return objeto;
 }
 
-export function create_button_module( data_group = {} ,data, id_tag, filter) {
+export function create_button_module( data_group = {}, data, id_tag, filter) {
     $(id_tag).empty();
     for (const titulo in data) {
         if (Object.keys(filter).includes(titulo)) {
-
-            const _titulo = filter[titulo];
+            const _titulo = (filter[titulo]); console.log(_titulo)
             const _status_remove = (env.grupoInteres_modules[_titulo]) ? env.grupoInteres_modules[_titulo] : [];
             const _data = data[titulo]; 
             const contApagadas = Object.keys(_data.apagadas).length;
@@ -30,10 +29,10 @@ export function create_button_module( data_group = {} ,data, id_tag, filter) {
                 <div class="toast fade show w-100 shadow rounded-4 rounded overflow-hidden mb-3" role="alert" aria-live="assertive" aria-atomic="true" id="${_titulo.replaceAll(" ", "_")}">
                     <!-- Header -->
                     <div class="toast-header  text-bg-light">
-                        ${env.img[_titulo]
-                    ? `<img src="${env.img[_titulo]}" alt="icon" class="me-2 img-fluid" width="35" id="img-${_titulo.replaceAll(" ", "_")}">`
-                    : `<img src="${data_group[titulo].info.icon}" alt="icon" class="img-fluid" width="35" id="img-${_titulo.replaceAll(" ", "_")}">`
-                }
+                    ${  ( env.img[_titulo] )
+                            ? `<img src="${env.img[_titulo]}" alt="icon" class="me-2 img-fluid" width="35" id="img-${_titulo.replaceAll(" ", "_")}">`
+                            : `<img src="${data_group[titulo].info.icon}" alt="icon" class="img-fluid" width="35" id="img-${_titulo.replaceAll(" ", "_")}">`
+                    }
 
                         <button class="btn btn-light text-start flex-grow-1 rounded-5" onclick="getInfoUnits('${titulo}', 'general')">
                             <strong class="font-monospace me-auto fs-5 btn">

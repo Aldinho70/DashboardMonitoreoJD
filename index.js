@@ -53,6 +53,7 @@ export const _login = ( token ) =>{
         .then( ( conexion ) => {
             _conexion = conexion;
             $("#user_Wialon").text( conexion.getCurrUser().getName() );
+            // showModal( "#welcomeinit")
             
             units = getAvl( 'avl_unit', conexion );  
             
@@ -77,7 +78,7 @@ export const _login = ( token ) =>{
                 .then( ( response ) => {
                     _unitsbyStatus = getStateConectionsUnitsbyStatus( response );
                     _unitsbyStatus = createHTML_PanelbyStatus( _unitsbyStatus ); 
-                    create_button_module( _unitsbyStatus, '#button_module1', env.statusInteres );
+                    create_button_module( {}, _unitsbyStatus, '#button_module2', env.statusInteres );
                 })
             }
             
@@ -91,17 +92,17 @@ export const _login = ( token ) =>{
                     .then( response => {
                         _groups = getStateConectionsUnitsbyGroups( response ); 
                         _groups = createHTML_PanelbyStatus( _groups );
-                        create_button_module( response, _groups, '#button_module2', env.gruposInteres1 );
+                        create_button_module( response, _groups, '#button_module1', env.gruposInteres1 );
         
                     })
                 }
 
-                if( env.gruposInteres2 ){
+                if( Object.keys(env.gruposInteres2).length > 0 ){
                     getGrupos( group )
                     .then( response => {
                         _groups = getStateConectionsUnitsbyGroups( response ); 
                         _groups = createHTML_PanelbyStatus( _groups );
-                        create_button_module( response, _groups, '#button_module1', env.gruposInteres2 );
+                        create_button_module( response, _groups, '#button_module2', env.gruposInteres2 );
         
                     })
                 }
@@ -134,14 +135,15 @@ export const getUnitById = ( id ) => {
 }
 
 const getGrupos = async ( groups ) => {
+    let _groups = {}
     await groups.forEach(group => {
         const objeto = {
             info: getInfoGroup( group ),
             units: getUnitsGroup( group ),
         }
-    groups[group.getName()] = objeto;
+    _groups[group.getName()] = objeto;
     });
-    return groups;
+    return _groups;
 }
 
 const getUnits = async ( units ) => {
