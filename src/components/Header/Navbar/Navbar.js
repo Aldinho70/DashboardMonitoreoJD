@@ -15,11 +15,6 @@ $(() => {
             <!-- Menú colapsable con opciones -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <button class="nav-link" onclick="showStatus();" id="btn-status">
-                            Estatus de la unidades
-                        </button>
-                    </li>
                     <li class="nav-item d-flex gap-2">
                         <button class="btn btn-sm btn-secondary d-flex align-items-center position-relative rounded-5" onclick="showModal('#modal-notificaciones');">
                             <i class="bi bi-bell-fill me-2"></i> <!-- Icono de campana -->
