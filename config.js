@@ -1,5 +1,5 @@
 export const env = {
-    token: "9755b3f50b30dd0d20c5088de1987da1E211D85BA3D0726F42986CD9B783F7B5E3EDC513",
+    token: "9755b3f50b30dd0d20c5088de1987da1D34D362FAE7A9793A0B7DB0B34632CF8B4535790",
     GroupsUnit: 'true',
         gruposInteres1: { /*El numero recomendado de de grupos son 5 por cada lado */
             /* HRH Izquierdo */
