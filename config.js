@@ -1,52 +1,53 @@
 export const env = {
     token: "9755b3f50b30dd0d20c5088de1987da1D34D362FAE7A9793A0B7DB0B34632CF8B4535790",
-    GroupsUnit: 'true',
-        gruposInteres1: { /*El numero recomendado de de grupos son 5 por cada lado */
-            /* HRH Izquierdo */
-                'GRUPO HRH':'HRH GENERAL',
-                '01-CARGAS MEXICO':'Mexico',
-                '03-POLLO VIVO':'Pollo',
-                '04-CONGELADO':'Congelado',
-                '05-FRESCO':'Fresco',
-                '06-PARA MONITOREO':'Monitoreo',
-                'GR-AREA 3':'GR',
-            /* -------------------------- */
+
+    /* Grupos de la cuenta que queremos ver */
+    Grupos: true,
+        seccion_grupos_1: { /*El numero recomendado de de grupos son 5 por cada lado */
+            'GRUPO HRH': {name: 'HRH'},
+            '01-CARGAS MEXICO':{name: 'MEXICO'},
+            '03-POLLO VIVO': {name: 'POLLO VIVO'},
+            '04-CONGELADO': {name: 'CONGELADO'},
+            '05-FRESCO': {name: 'FRESCO'},            
+            // '06-PARA MONITOREO': {name: 'MONITOREO JD'},            
+            '02-CARGAS FORANEAS': { name: 'FORANEAS'},
         },
-        gruposInteres2: {
-            /* HRH Derecho */
-                '02-CARGAS FORANEAS':'Foraneas',
-                'HRH CAJAS':'Cajas',
-                'HRH SEGURIDAD':'Dobles',
-                '08-HRH CAJAS PILGRIMS':'Pilgrims',
-                'DIFEYRO MIGRACION MEERKAT':'Dyfeiro',
-                '00-DIFEYRO SEGURIDAD':'Dyfeiro_Dobles',
-                '00-CAJAS DIFEYRO':'Dyfeiro Cajas',
-            /* -------------------------- */
+        seccion_grupos_2: {
+            'HRH CAJAS': { name: 'HRH CAJAS'},
+            'HRH SEGURIDAD': { name: 'DOBLES'},
+            '08-HRH CAJAS PILGRIMS': { name: 'PILGRIMS'},
+            'DIFEYRO MIGRACION MEERKAT': { name: 'DIFEYRO'},
+            '00-DIFEYRO SEGURIDAD': { name: 'DIFEYRO DOBLES'},
+            '00-CAJAS DIFEYRO': { name: 'DIFEYRO CAJAS'},
         },
-    StatusUnit: 'false',
+
+    /* Estados de las unidades */
+    Estados_de_unidades: false,
         statusInteres: {
-            'VACIO': 'VACIO',
-            'CARGADO': 'CARGADO',
-            'ESPERA_CARGA': ' CARGA',
-            'ESPERA_DESCARGA': 'DESCARGA',
+            'VACIO': {name: 'VACIO'},
+            'CARGADO': {name: 'CARGADO'},
+            'ESPERA_CARGA': {name: 'CARGA'},
+            'ESPERA_DESCARGA': {name: 'DESCARGA'},
+            // 'SIN_STATUS': 'SIN CARGA',
         }, 
-    Name_cajas: 'TK-',
+
+    Name_cajas: '',
+
     grupoInteres_modules: {
-        'Cajas': ['ralenti','warning' /*'apagadas', 'sin_conexion', 'movimiento'*/],
-        'Dobles': ['ralenti', 'apagadas', 'movimiento'],
-        'Dyfeiro_Dobles': ['ralenti', 'apagadas', 'movimiento'],
+        'Juarez': ['Movimiento']
     },
-    Temperature: 'false',
-    Estatus: 'false',
-    map:'false',
-    img: { /* Opcional */
-        
+
+    img: { 
+        /* 'VACIO': './src/assets/img/logojd.png', 
+        ...*/
     },
-    bootstrap: /* Opcional */ {
-        
+
+    map_module: {
+        map : true,
+        detail: true,
     }
     
 }
 
 // Usuario: MONITOREO HRH
-// Contrase単a: MONITOREO2022
+// Contrasena: MONITOREO2022

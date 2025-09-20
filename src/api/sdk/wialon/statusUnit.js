@@ -16,8 +16,8 @@ export const getUnitsStatus = async (units) => {
         
         if (element && 'status' in element) {
             const value = units[key].personalizados.status.v;
-
-            if ( value.match(/\b(?:vacio)\b/i) ) {
+            
+            if ( value.match(/\b(?:VACIO)\b/i) ) {
                 VACIO[ units[key].info.nameUnit ] = units[key];
             }
             else if ( value.match(/\b(?:carga|ESPERA_CARGA)\b/i) ) {
@@ -28,9 +28,9 @@ export const getUnitsStatus = async (units) => {
             }
             else if ( value.match(/\b(?:descarga|ESPERA_DESCARGA)\b/i) ) {
                 ESPERA_DESCARGA[ units[key].info.nameUnit ] = units[key];
-            }/*else{
+            }else{
                 SIN_STATUS[ units[key].info.nameUnit ] = units[key];
-            }*/
+            }
         }
     }
 
@@ -39,7 +39,7 @@ export const getUnitsStatus = async (units) => {
         CARGADO,
         ESPERA_CARGA,
         ESPERA_DESCARGA,
-        // SIN_STATUS
+        SIN_STATUS
     }
 };
 

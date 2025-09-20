@@ -25,6 +25,7 @@ function create_module_fields( data ){
     for( const key in data ){
         const elemento = data[key]; 
         if(elemento.id){
+       
             $("#modal_body_campos_personalizados").append(`
             <tr>
                 <td><input type="text" id="prop_id_${data[key].id}"  placeholder="ID" disabled="disabled" value="${elemento.id}"/></td>

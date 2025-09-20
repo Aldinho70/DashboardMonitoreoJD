@@ -1,19 +1,16 @@
-/* imports */
 import { env } from './config.js'
 import { getToken } from './src/api/sdk/wialon/token.js'
 import { showModal, removeClass } from './src/utils/utils.js'
 import { login, getAvl, logout  } from './src/api/sdk/wialon/wialonAPI.js'
-import { getFields, setProperties  } from './src/api/sdk/wialon/personalizados.js'
 import { getInfoGroup, getUnitsGroup } from './src/api/sdk/wialon/groups.js'
+import { create_map_module_modal } from './src/components/ModuleMap/Map/Map.js';
+import { getFields, setProperties  } from './src/api/sdk/wialon/personalizados.js'
 import { getUnitsStatus, create_status_module } from './src/api/sdk/wialon/statusUnit.js'
 import { getNotifications, handleNotifications } from './src/api/sdk/wialon/notifications.js';
 import { getTemperature, create_modal_temperature } from './src/api/sdk/wialon/temperature.js'
 import { getGPS, getInfo, getPersonalizados, getSensores, getState } from './src/api/sdk/wialon/device.js'
 import { getStateConectionsUnits, getStateConectionsUnitsbyStatus, getStateConectionsUnitsbyGroups } from './src/api/sdk/wialon/statusConections.js'
-import { createHTML_PanelbyStatus, create_button_module, create_table_module, /*create_map_module_modal,*/ config_modules, create_select_units, removeClass_v2} from './src/helper/index.js'
-/* ------- */
-
-import { create_map_module_modal } from './src/components/ModuleMap/Map/Map.js';
+import { createHTML_PanelbyStatus, create_button_module, create_table_module, /*create_map_module_modal,*/  create_select_units, removeClass_v2} from './src/helper/index.js'
 
 window.showModal = showModal;
 window.getFields = getFields;
@@ -53,37 +50,49 @@ export const _login = ( token ) =>{
         .then( ( conexion ) => {
             _conexion = conexion;
             $("#user_Wialon").text( conexion.getCurrUser().getName() );
+            // showModal( "#welcomeinit")
             
             units = getAvl( 'avl_unit', conexion );  
             
             const group = getAvl( 'avl_unit_group', conexion );
             const resource = getAvl( 'avl_resource', conexion );
-             
+
             //create_status_module( conexion );
             getNotifications( resource );  
-            config_modules();
+
             getUnits( units )
             .then ( response => {
                 _units = getStateConectionsUnits( response );
-                
-                if( env.Temperature == 'true' ){
-                    _unitsfailedTemperature = getTemperature( response );
-                    create_modal_temperature( _unitsfailedTemperature ); 
-                }
             })
             
-            if( env.StatusUnit == 'true'  && env.statusInteres ){
-                getUnitsStatus( units ) 
-                .then( ( response ) => {
-                    _unitsbyStatus = getStateConectionsUnitsbyStatus( response );
-                    _unitsbyStatus = createHTML_PanelbyStatus( _unitsbyStatus ); 
-                    create_button_module( _unitsbyStatus, '#button_module1', env.statusInteres );
-                })
+            /* Menu de botones agrupados por estados de la unidad */
+            if (env.Estados_de_unidades && env.statusInteres) {
+                let _groups_aux = {};
+                let info_groups = {}
+                if (Object.keys(env.seccion_grupos_2 || {}).length) {
+                    env.statusInteres = { ...env.statusInteres, ...env.seccion_grupos_2 };
+
+                    getGrupos( group )
+                    .then( response => {
+                        info_groups = response;
+                        _groups_aux = getStateConectionsUnitsbyGroups( response ); 
+                        _groups_aux = createHTML_PanelbyStatus( _groups_aux );
+                    })
+                }
+
+                getUnitsStatus(units).then((response) => {
+                    _unitsbyStatus = getStateConectionsUnitsbyStatus(response);
+                    _unitsbyStatus = createHTML_PanelbyStatus(_unitsbyStatus); 
+                    _unitsbyStatus = { ..._unitsbyStatus, ..._groups_aux}                    
+                    create_button_module(info_groups , _unitsbyStatus, '#button_module2', env.statusInteres);
+                });
             }
             
-            if(env.GroupsUnit == 'true'){
-                if( env.gruposInteres1 ){
-                    if( Object.keys(env.gruposInteres2).length == 0 && ( !env.StatusUnit ) ){
+            /* Menu de botones agrupados por grupos de la cuenta */
+            if( env.Grupos ){
+
+                if( Object.keys(env.seccion_grupos_1).length > 0 ){
+                    if( Object.keys(env.seccion_grupos_2).length == 0 && ( !env.Estados_de_unidades ) ){
                           $(".btn-module").addClass('w-100');  
                     }
                     
@@ -91,18 +100,17 @@ export const _login = ( token ) =>{
                     .then( response => {
                         _groups = getStateConectionsUnitsbyGroups( response ); 
                         _groups = createHTML_PanelbyStatus( _groups );
-                        create_button_module( response, _groups, '#button_module2', env.gruposInteres1 );
-        
+                        create_button_module( response, _groups, '#button_module1', env.seccion_grupos_1 );
                     })
                 }
 
-                if( env.gruposInteres2 ){
+                if( Object.keys(env.seccion_grupos_2).length > 0 ){
+
                     getGrupos( group )
                     .then( response => {
                         _groups = getStateConectionsUnitsbyGroups( response ); 
                         _groups = createHTML_PanelbyStatus( _groups );
-                        create_button_module( response, _groups, '#button_module1', env.gruposInteres2 );
-        
+                        create_button_module( response, _groups, '#button_module2', env.seccion_grupos_2 );
                     })
                 }
             }  
@@ -111,11 +119,6 @@ export const _login = ( token ) =>{
         .catch( (error) => {
             console.error ( `Sin unidades: ${error}` );
         }) 
-        
-        if(env.map == 'false'){
-            $("#root_map").addClass('d-none');
-            $("#root_button_module").addClass('col-9');
-        }
     } catch (error) {
         console.error ( error );
     }
@@ -134,14 +137,15 @@ export const getUnitById = ( id ) => {
 }
 
 const getGrupos = async ( groups ) => {
+    let _groups = {}
     await groups.forEach(group => {
         const objeto = {
             info: getInfoGroup( group ),
             units: getUnitsGroup( group ),
         }
-    groups[group.getName()] = objeto;
+    _groups[group.getName()] = objeto;
     });
-    return groups;
+    return _groups;
 }
 
 const getUnits = async ( units ) => {
@@ -159,9 +163,7 @@ const getUnits = async ( units ) => {
 }
 
 function getInfoUnits( modulo, estado, id_tag ){
-    
     const TODO = { ..._unitsbyStatus, ..._groups};
-    
     for( const _modulo in TODO){
         if( _modulo == modulo){
             const _units = TODO[ _modulo ];
