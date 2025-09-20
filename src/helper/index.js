@@ -1,4 +1,3 @@
-// import { removeClass } from "../utils/utils.js";
 import { env } from "../../config.js";
 
 export function createHTML_PanelbyStatus(data) {
@@ -116,6 +115,8 @@ export function create_table_module(data, id_table) {
     for (const key in data) {
         const objeto = data[key];
 
+        console.log( objeto );
+        
         const html = `
         <tr>
             <td>
@@ -127,6 +128,10 @@ export function create_table_module(data, id_table) {
                         <strong class="me-auto">
                             <button type="button" class="btn btn-secondary btn-sm rounded-5" onclick="getSelectedUnitInfo(${objeto.info.idUnit})">
                                 ${objeto.info.nameUnit}
+                            </button>
+
+                            <button type="button" class="btn btn-secondary btn-sm rounded-5" onclick="sendCommand( 'DI0021', '1' )">
+                                Envio de comandos
                             </button>
                         </strong>
 

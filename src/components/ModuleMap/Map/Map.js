@@ -15,6 +15,8 @@ $(() => {
 })
 
 export const create_map_module_modal = async (objeto) => {
+    console.log(objeto);
+    
     const unit_messages = await MessagesService.loadMessagesToday(objeto.info.idUnit);
     
     // Generar contenido elegante para el modal

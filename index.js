@@ -11,11 +11,13 @@ import { getTemperature, create_modal_temperature } from './src/api/sdk/wialon/t
 import { getGPS, getInfo, getPersonalizados, getSensores, getState } from './src/api/sdk/wialon/device.js'
 import { getStateConectionsUnits, getStateConectionsUnitsbyStatus, getStateConectionsUnitsbyGroups } from './src/api/sdk/wialon/statusConections.js'
 import { createHTML_PanelbyStatus, create_button_module, create_table_module, /*create_map_module_modal,*/  create_select_units, removeClass_v2} from './src/helper/index.js'
+import { sendCommand } from './src/api/Meerkat/meerkat.api.js'
 
 window.showModal = showModal;
 window.getFields = getFields;
 window.searchUnit = searchUnit;
 window.showStatus = showStatus;
+window.sendCommand = sendCommand;
 window.getInfoUnits = getInfoUnits;
 window.setProperties = setProperties;
 window.removeClass_v2 = removeClass_v2;
