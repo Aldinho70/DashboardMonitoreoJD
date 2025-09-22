@@ -34,7 +34,9 @@ export const env = {
     Name_cajas: '',
 
     grupoInteres_modules: {
-        'Juarez': ['Movimiento']
+        'HRH CAJAS': ['ralenti','warning' /*'apagadas', 'sin_conexion', 'movimiento'*/],
+        'DOBLES': ['ralenti', 'apagadas', 'movimiento'],
+        'DIFEYRO DOBLES': ['ralenti', 'apagadas', 'movimiento'],
     },
 
     img: { 

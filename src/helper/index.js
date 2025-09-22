@@ -10,14 +10,13 @@ export function createHTML_PanelbyStatus(data) {
     return objeto;
 }
 
-export function create_button_module( data_group = {}, data, id_tag, filter) {
+export function create_button_module(data_group = {}, data, id_tag, filter) {
     $(id_tag).empty();
     for (const titulo in data) {
         if (Object.keys(filter).includes(titulo)) {
-            const _titulo = (filter[titulo].name); 
+            const _titulo = (filter[titulo].name);
             const _status_remove = (env.grupoInteres_modules[_titulo]) ? env.grupoInteres_modules[_titulo] : [];
-            const _data = data[titulo]; 
-
+            const _data = data[titulo];
             const contApagadas = Object.keys(_data.apagadas).length;
             const contRalenti = Object.keys(_data.ralenti).length;
             const contMovimiento = Object.keys(_data.movimiento).length;
@@ -29,11 +28,11 @@ export function create_button_module( data_group = {}, data, id_tag, filter) {
                 <div class="toast fade show w-100 shadow rounded-4 rounded overflow-hidden mb-3" role="alert" aria-live="assertive" aria-atomic="true" id="${_titulo.replaceAll(" ", "_")}">
                     <!-- Header -->
                     <div class="toast-header  text-bg-light">
-                    ${  ( env.img[_titulo] )
-                            ? `<img src="${env.img[_titulo]}" alt="icon" class="me-2 img-fluid" width="35" id="img-${_titulo.replaceAll(" ", "_")}">`
-                            : ( data_group[titulo] ) 
-                                ? `<img src="${data_group[titulo].info.icon}" alt="icon" class="img-fluid" width="35" id="img-${_titulo.replaceAll(" ", "_")}">`
-                                : '<img src="./src/assets/img/logojd.png" alt="icon" class="img-fluid" width="35" id="img-${_titulo.replaceAll(" ", "_")}">'
+                    ${(env.img[_titulo])
+                    ? `<img src="${env.img[_titulo]}" alt="icon" class="me-2 img-fluid" width="35" id="img-${_titulo.replaceAll(" ", "_")}">`
+                    : (data_group[titulo])
+                        ? `<img src="${data_group[titulo].info.icon}" alt="icon" class="img-fluid" width="35" id="img-${_titulo.replaceAll(" ", "_")}">`
+                        : '<img src="./src/assets/img/logojd.png" alt="icon" class="img-fluid" width="35" id="img-${_titulo.replaceAll(" ", "_")}">'
                     }
 
                         <button class="btn btn-light text-start flex-grow-1 rounded-5" onclick="getInfoUnits('${titulo}', 'general')">
@@ -63,14 +62,14 @@ export function create_button_module( data_group = {}, data, id_tag, filter) {
                         </button>
 
                         <!-- Warning -->
-                        ${(_titulo == 'Dobles' || _titulo == 'Cajas')
-                    ? `<button type="button" class="btn btn-danger rounded-5 btn-sm p-1" onclick="getInfoUnits('${titulo}', 'warning')">
-                                <span class="d-none d-xl-inline fs-6">Unidad sin reportar</span>
-                                <i class="bi bi-power d-xl-none"></i>
-                                <span class="badge text-bg-dark cont" id="cont-${titulo}-warning">${contWarning}</span>
-                            </button>`
-                    : ''
-                }
+                        ${(_titulo == 'DOBLES' || _titulo == 'HRH CAJAS' || _titulo == 'DIFEYRO DOBLES')
+                            ? `<button type="button" class="btn btn-danger rounded-5 btn-sm p-1" onclick="getInfoUnits('${titulo}', 'warning')">
+                                    <span class="d-none d-xl-inline fs-6">Unidad sin reportar</span>
+                                    <i class="bi bi-power d-xl-none"></i>
+                                    <span class="badge text-bg-dark cont" id="cont-${titulo}-warning">${contWarning}</span>
+                                </button>`
+                            : ''
+                        }
                         </div>
                     </div>
 
@@ -115,8 +114,8 @@ export function create_table_module(data, id_table) {
     for (const key in data) {
         const objeto = data[key];
 
-        console.log( objeto );
-        
+        console.log(objeto);
+
         const html = `
         <tr>
             <td>
@@ -288,7 +287,7 @@ export function create_table_module(data, id_table) {
 //                 allowfullscreen>
 //             </iframe>
 //         </div>
-  
+
 //         <!-- Información en tabla -->
 //         <div class="card shadow-sm">
 //           <div class="card-header bg-secondary text-white">
@@ -316,7 +315,7 @@ export function create_table_module(data, id_table) {
 //             </table>
 //           </div>
 //         </div>
-  
+
 //         <!-- Opciones -->
 //         <div class="mt-4">
 //           <div class="btn-group dropup w-100">

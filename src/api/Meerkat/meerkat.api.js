@@ -1,27 +1,15 @@
 // Función para enviar el comando
 export async function sendCommand(id_unit, cmd) {
-      const user = "Difeyro1";
-      const password = "47a545bbced597d7f2666211994c1";
-      const token = btoa(`${user}:${password}`); // Base64 en navegador
-
       const body = {
-        idCtm: "551",
         idTra: id_unit,
         idCmd: cmd,
-        idUsr: "Jornada Digital",
-        idTer: "PC10",
-        idPgm: "Monitoreo JD",
       };
 
       try {
-        const response = await axios.post(
-          "https://ws.mksmexico.com/Positions/SndCmdExt.php",
+        const response = await axios.post("meerkat.api.php",
           body,
           {
-            headers: {
-              Authorization: `Basic ${token}`,
-              "Content-Type": "application/json",
-            },
+            headers: { "Content-Type": "application/json" }
           }
         );
 
