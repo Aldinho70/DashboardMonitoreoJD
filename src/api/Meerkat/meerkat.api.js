@@ -1,3 +1,5 @@
+import { showToast } from "../../utils/utils.js";
+
 // Función para enviar el comando
 export async function sendCommand(id_unit, cmd) {
       const body = {
@@ -6,13 +8,13 @@ export async function sendCommand(id_unit, cmd) {
       };
 
       try {
-        const response = await axios.post("meerkat.api.php",
+        const response = await axios.post("http://ws4cjdg.com/MonitoreoHRH/src/api/Meerkat/meerkat.api.php",
           body,
           {
             headers: { "Content-Type": "application/json" }
           }
         );
-
+        showToast("#Toast_ComandResult");
         console.log("Respuesta del servidor:", response.data);
         return response.data;
       } catch (error) {

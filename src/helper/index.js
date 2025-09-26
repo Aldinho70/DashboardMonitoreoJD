@@ -114,8 +114,6 @@ export function create_table_module(data, id_table) {
     for (const key in data) {
         const objeto = data[key];
 
-        console.log(objeto);
-
         const html = `
         <tr>
             <td>
@@ -129,9 +127,25 @@ export function create_table_module(data, id_table) {
                                 ${objeto.info.nameUnit}
                             </button>
 
-                            <button type="button" class="btn btn-secondary btn-sm rounded-5" onclick="sendCommand( 'DI0021', '1' )">
-                                Envio de comandos
-                            </button>
+                            ${ (objeto.personalizados?.IDMET)
+                                ? ` <div class="btn-group dropend">
+                                        <button type="button" class="btn btn-danger dropdown-toggle btn-sm" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Enviar comandos
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="btn dropdown-item" onclick="sendCommand( '${objeto.personalizados?.IDMET?.v}', '1' )" >Reset</a>
+                                            </li>
+                                            <li>
+                                                <a class="btn dropdown-item" onclick="sendCommand( '${objeto.personalizados?.IDMET?.v}', '2' )">Paro de motor</a>
+                                            </li>
+                                            <li>
+                                                <a class="btn dropdown-item" onclick="sendCommand( '${objeto.personalizados?.IDMET?.v}', '3' )">Quitar paro de motor</a>
+                                            </li>
+                                        </ul>
+                                    </div>`
+                                : ``
+                             }
                         </strong>
 
                         <small class="text-muted">Últ MSJ: ${objeto.gps?.time ?? ""}</small>

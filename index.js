@@ -1,6 +1,7 @@
 import { env } from './config.js'
 import { getToken } from './src/api/sdk/wialon/token.js'
 import { showModal, removeClass } from './src/utils/utils.js'
+import { sendCommand } from './src/api/Meerkat/meerkat.api.js'
 import { login, getAvl, logout  } from './src/api/sdk/wialon/wialonAPI.js'
 import { getInfoGroup, getUnitsGroup } from './src/api/sdk/wialon/groups.js'
 import { create_map_module_modal } from './src/components/ModuleMap/Map/Map.js';
@@ -11,7 +12,6 @@ import { getTemperature, create_modal_temperature } from './src/api/sdk/wialon/t
 import { getGPS, getInfo, getPersonalizados, getSensores, getState } from './src/api/sdk/wialon/device.js'
 import { getStateConectionsUnits, getStateConectionsUnitsbyStatus, getStateConectionsUnitsbyGroups } from './src/api/sdk/wialon/statusConections.js'
 import { createHTML_PanelbyStatus, create_button_module, create_table_module, /*create_map_module_modal,*/  create_select_units, removeClass_v2} from './src/helper/index.js'
-import { sendCommand } from './src/api/Meerkat/meerkat.api.js'
 
 window.showModal = showModal;
 window.getFields = getFields;
