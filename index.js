@@ -1,6 +1,7 @@
 import { env } from './config.js'
 import { getToken } from './src/api/sdk/wialon/token.js'
 import { showModal, removeClass } from './src/utils/utils.js'
+import { sendCommand } from './src/api/Meerkat/meerkat.api.js'
 import { login, getAvl, logout  } from './src/api/sdk/wialon/wialonAPI.js'
 import { getInfoGroup, getUnitsGroup } from './src/api/sdk/wialon/groups.js'
 import { create_map_module_modal } from './src/components/ModuleMap/Map/Map.js';
@@ -16,6 +17,7 @@ window.showModal = showModal;
 window.getFields = getFields;
 window.searchUnit = searchUnit;
 window.showStatus = showStatus;
+window.sendCommand = sendCommand;
 window.getInfoUnits = getInfoUnits;
 window.setProperties = setProperties;
 window.removeClass_v2 = removeClass_v2;
