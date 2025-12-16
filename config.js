@@ -1,5 +1,5 @@
 export const env = {
-    token: "9755b3f50b30dd0d20c5088de1987da1D34D362FAE7A9793A0B7DB0B34632CF8B4535790",
+    token: "9755b3f50b30dd0d20c5088de1987da102EC4CD1ED8BBA4D4C6869BC6B86888A9606B5DA",
 
     /* Grupos de la cuenta que queremos ver */
     Grupos: true,
