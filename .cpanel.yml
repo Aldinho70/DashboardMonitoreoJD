@@ -1,4 +1,4 @@
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/dv4i40wm3rs9/public_html/MonitoreoHRH/
+    - export DEPLOYPATH=/home/dv4i40wm3rs9/public_html/MonitoreoGuzman/
     - /bin/cp -r * $DEPLOYPATH

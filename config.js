@@ -1,24 +1,23 @@
 export const env = {
-    token: "9755b3f50b30dd0d20c5088de1987da102EC4CD1ED8BBA4D4C6869BC6B86888A9606B5DA",
+    token: "d26901b3a1b754d30e264a18da1e24e37AC702FCC0735B72987A8FAFDD6E86F43350A5CB",
 
     /* Grupos de la cuenta que queremos ver */
     Grupos: true,
         seccion_grupos_1: { /*El numero recomendado de de grupos son 5 por cada lado */
-            'GRUPO HRH': {name: 'HRH'},
-            '01-CARGAS MEXICO':{name: 'MEXICO'},
-            '03-POLLO VIVO': {name: 'POLLO VIVO'},
-            '04-CONGELADO': {name: 'CONGELADO'},
-            '05-FRESCO': {name: 'FRESCO'},            
-            // '06-PARA MONITOREO': {name: 'MONITOREO JD'},            
-            '02-CARGAS FORANEAS': { name: 'FORANEAS'},
+            'GUZMAN TRACTOS': {name: 'Tractos'},
+            'GUZMAN TRACTOS DOBLES': {name: 'Tractos dobles'},
+            'GUZMAN CAJAS': {name: 'Cajas'},
+            'GUZMAN CAJAS DOBLES': {name: 'Cajas dobles'},
+            'TRACTOS DASHBOARD': {name: 'Tractos dashboard'},
+            
         },
         seccion_grupos_2: {
-            'HRH CAJAS': { name: 'HRH CAJAS'},
-            'HRH SEGURIDAD': { name: 'DOBLES'},
-            '08-HRH CAJAS PILGRIMS': { name: 'PILGRIMS'},
-            'DIFEYRO MIGRACION MEERKAT': { name: 'DIFEYRO'},
-            '00-DIFEYRO SEGURIDAD': { name: 'DIFEYRO DOBLES'},
-            '00-CAJAS DIFEYRO': { name: 'DIFEYRO CAJAS'},
+            'GUZMAN EN CLIENTE': { name: 'Con cliente'},
+            'GUZMAN BASE': { name: 'Base'},
+            'GUZMAN DETENIDAS': { name: 'Detenidos'},
+            'GUZMAN EN MOVIMIENTO': { name: 'En movimiento'},
+            'GUZMAN DASHBOARD TRACTOS DOBLES': { name: 'Dobles dashboard'},
+            'GUZMAN CAJAS CARGA LALA': { name: 'Cajas lala'},
         },
 
     /* Estados de las unidades */
@@ -34,9 +33,9 @@ export const env = {
     Name_cajas: '',
 
     grupoInteres_modules: {
-        'HRH CAJAS': ['ralenti','warning' /*'apagadas', 'sin_conexion', 'movimiento'*/],
-        'DOBLES': ['ralenti', 'apagadas', 'movimiento'],
-        'DIFEYRO DOBLES': ['ralenti', 'apagadas', 'movimiento'],
+        // 'HRH CAJAS': ['ralenti','warning' /*'apagadas', 'sin_conexion', 'movimiento'*/],
+        // 'DOBLES': ['ralenti', 'apagadas', 'movimiento'],
+        // 'DIFEYRO DOBLES': ['ralenti', 'apagadas', 'movimiento'],
     },
 
     img: { 
