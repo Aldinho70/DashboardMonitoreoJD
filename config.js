@@ -12,16 +12,16 @@ export const env = {
             
         },
         seccion_grupos_2: {
-            'GUZMAN EN CLIENTE': { name: 'Con cliente'},
-            'GUZMAN BASE': { name: 'Base'},
-            'GUZMAN DETENIDAS': { name: 'Detenidos'},
-            'GUZMAN EN MOVIMIENTO': { name: 'En movimiento'},
-            'GUZMAN DASHBOARD TRACTOS DOBLES': { name: 'Dobles dashboard'},
+            // 'GUZMAN EN CLIENTE': { name: 'Con cliente'},
+            // 'GUZMAN BASE': { name: 'Base'},
+            // 'GUZMAN DETENIDAS': { name: 'Detenidos'},
+            // 'GUZMAN EN MOVIMIENTO': { name: 'En movimiento'},
+            // 'GUZMAN DASHBOARD TRACTOS DOBLES': { name: 'Dobles dashboard'},
             'GUZMAN CAJAS CARGA LALA': { name: 'Cajas lala'},
         },
 
     /* Estados de las unidades */
-    Estados_de_unidades: false,
+    Estados_de_unidades: true,
         statusInteres: {
             'VACIO': {name: 'VACIO'},
             'CARGADO': {name: 'CARGADO'},
