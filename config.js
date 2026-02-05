@@ -5,12 +5,12 @@ export const env = {
     Grupos: true,
         seccion_grupos_1: { /*El numero recomendado de de grupos son 5 por cada lado */
             'GRUPO HRH': {name: 'HRH'},
-            '01-CARGAS MEXICO':{name: 'MEXICO'},
+            '03-CARGAS MEXICO':{name: 'MEXICO'},
             '03-POLLO VIVO': {name: 'POLLO VIVO'},
             '04-CONGELADO': {name: 'CONGELADO'},
             '05-FRESCO': {name: 'FRESCO'},            
             // '06-PARA MONITOREO': {name: 'MONITOREO JD'},            
-            '02-CARGAS FORANEAS': { name: 'FORANEAS'},
+            '03-CARGAS FORANEAS': { name: 'FORANEAS'},
         },
         seccion_grupos_2: {
             'HRH CAJAS': { name: 'HRH CAJAS'},
