@@ -1,31 +1,47 @@
 $( () => {
     $("#root-main").append(`
-        <div class="row">
+        <div class=" main-shell">
+            <div class="row g-2 main-layout">
+                <!-- Operaciones -->
+                <section class="col-12 col-xl-9">
+                    <div class="main-panel main-panel--operations h-100" id="root_button_module">
+                        <div class="row h-100 main-panel__columns">
+                            <div class="col-12 col-md-6 d-flex min-h-0">
+                                <div class="main-scroll-col btn-module w-100" id="button_module1"></div>
+                            </div>
+                            <div class="col-12 col-md-6 d-flex min-h-0">
+                                <div class="main-scroll-col btn-module w-100" id="button_module2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-            <!-- Operaciones -->
-            <div class="col-9 rounded-4 bg-light " id="root_button_module">
-                <div class="row ">
-                    <div class="col-md-6 col-sm-12 btn-module" id="button_module1"></div>
-                    <div class="col-md-6 col-sm-12 btn-module" id="button_module2"></div>
-                </div>
-            </div>
+                <!-- Tabla de unidades -->
+                <aside class="col-12 col-xl-3 d-flex flex-column min-h-0">
+    
+                    <!-- Notificaciones -->
+                    <div class="main-panel mb-2 notifications-panel">
+                        <div class="main-panel__head">
+                            <span class="main-panel__title">Notificaciones</span>
+                        </div>
+                        <div class="notifications-container" id="root_table_notificacions"></div>
+                    </div>
 
-            <!-- Tabla de unidades -->
-            <div class="col-3 border rounded-4 bg-secondary">
-                <div class="text-center">
-                    <span class="badge rounded-pill text-bg-secndary text center fs-6">Tabla de unidades</span>
-                    <hr class="border border-light border-2 opacity-50">
-                </div>
-                <div class="scrollable-table rounded-4">
-                    <table class="table table-striped " id="table-units2">
-                        <thead>
-                            <!-- <tr>
-                                <th scope="col">Unidades</th>
-                            </tr> -->
-                        </thead>
-                        <tbody id="table-tbody"></tbody>
-                    </table>
-                </div>
+                    <!-- Tabla -->
+                    <div class="main-panel main-panel--units flex-grow-1 min-h-0">
+                        <div class="main-panel__head">
+                            <span class="main-panel__title">Tabla de unidades</span>
+                        </div>
+
+                        <div class="main-scroll-col main-scroll-col--table">
+                            <table class="table table-striped table-sm align-middle mb-0" id="table-units2">
+                                <thead></thead>
+                                <tbody id="table-tbody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </aside>
             </div>
         </div>
     `)

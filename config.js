@@ -9,6 +9,10 @@ export const env = {
             'GOMEZ PALACIO': {name: 'Gomez Palacio'},
             'ABASOLO': {name: 'Abasolo'},
             'MERIDA': {name: 'Merida'},            
+            '07 TICSA': {name: 'Ticsa'},            
+            '09 GENERAL TICSA/TRAFUSA': {name: 'General'},        
+            '10 IMPERIAL SENSORES': {name: 'Impereal'},        
+
         },
         seccion_grupos_2: {
             // '01 UNIDADES VACIAS TFS/TCS': 'Vacias',
@@ -16,6 +20,9 @@ export const env = {
             // 'UNIDADES EN CLIENTE TCS/TFS': 'Con cliente',
             // '04 UNIDADES GRAL AFUERA': 'En transito',
             'CD JUAREZ': { name: 'Juarez'},
+            '08 TRAFUSA': { name: 'Trafusa'},
+            'Filsa': { name: 'Filsa'},
+
         },
 
     /* Estados de las unidades */
