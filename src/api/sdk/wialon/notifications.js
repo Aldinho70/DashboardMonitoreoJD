@@ -26,7 +26,7 @@ function processNotification(event) {
 
         $("#root-notification").prepend( addNotificationModal(unit, data, cont) );
 
-        $("#root_table_notificacions add").prepend( addNotificationView(unit, data, cont) );
+        $("#root_table_notificacions").prepend( addNotificationView(unit, data, cont) );
 
         $("#cont_notificacion").text(cont + 1);
 
