@@ -20,15 +20,13 @@ export function getNotifications( resource ) {
 function processNotification(event) {
     const data = event.getData(); // get data from event
     const cont = parseInt($("#cont_notificacion").text());    
-    console.log(data);
     
-
     if (data.tp && data.tp == "unm") {
         var unit = getUnitById( data.unit );
 
         $("#root-notification").prepend( addNotificationModal(unit, data, cont) );
 
-        $("#root_notifactions_view").prepend( addNotificationView(unit, data, cont) );
+        $("#root_table_notificacions add").prepend( addNotificationView(unit, data, cont) );
 
         $("#cont_notificacion").text(cont + 1);
 

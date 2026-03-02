@@ -13,10 +13,10 @@ $(() => {
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cont_notificacion_gral" id="cont_notificacion">0</span>
                 </button>
 
-                <button class="btn btn-sm rounded-pill navbar-min__btn d-flex align-items-center gap-1" type="button" disabled>
+                <!--<button class="btn btn-sm rounded-pill navbar-min__btn d-flex align-items-center gap-1" type="button" disabled>
                     <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
                     <span id="timer" role="status" class="d-none d-lg-inline">Se actualizara en 0 segundos...</span>
-                </button>
+                </button>-->
 
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-sm dropdown-toggle rounded-pill navbar-min__btn" id="user_Wialon" data-bs-toggle="dropdown" aria-expanded="false"></button>
