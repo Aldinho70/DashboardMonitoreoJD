@@ -3,7 +3,7 @@ export const env = {
 
     /* Grupos de la cuenta que queremos ver */
     Grupos: true,
-        seccion_grupos_1: { /*El numero recomendado de de grupos son 5 por cada lado */
+        seccion_grupos_1: { 
             '03 CARGAS A SEGUIR': {name: 'A seguir'},
             '05 TANQUES TICSA':{name: 'Tanques'},
             'GOMEZ PALACIO': {name: 'Gomez Palacio'},
@@ -12,26 +12,25 @@ export const env = {
             '07 TICSA': {name: 'Ticsa'},            
             '09 GENERAL TICSA/TRAFUSA': {name: 'General'},        
             '10 IMPERIAL SENSORES': {name: 'Impereal'},        
+            'UNIDADES EN CLIENTE TCS/TFS': {name: 'Con cliente'},        
 
         },
         seccion_grupos_2: {
-            // '01 UNIDADES VACIAS TFS/TCS': 'Vacias',
-            // '02 UNIDADES CARGADAS TFS/TCS': 'Cargadas',
-            // 'UNIDADES EN CLIENTE TCS/TFS': 'Con cliente',
-            // '04 UNIDADES GRAL AFUERA': 'En transito',
+            '02 UNIDADES CARGADAS TFS/TCS': { name: 'Cargadas'},
+            '02 UNIDADES VACIAS TFS/TCS': { name: 'Vacias'},
             'CD JUAREZ': { name: 'Juarez'},
             '08 TRAFUSA': { name: 'Trafusa'},
-            'Filsa': { name: 'Filsa'},
+            'FILSA': { name: 'Filsa'},
 
         },
 
     /* Estados de las unidades */
     Estados_de_unidades: true,
         statusInteres: {
-            'VACIO': {name: 'VACIO'},
-            'CARGADO': {name: 'CARGADO'},
-            'ESPERA_CARGA': {name: 'CARGA'},
-            'ESPERA_DESCARGA': {name: 'DESCARGA'},
+            // 'VACIO': {name: 'VACIO'},
+            // 'CARGADO': {name: 'CARGADO'},
+            'ESPERA_CARGA': {name: 'Espera carga'},
+            'ESPERA_DESCARGA': {name: 'Esspera descarga'},
             // 'SIN_STATUS': 'SIN CARGA',
         }, 
 
