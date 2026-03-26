@@ -20,11 +20,13 @@ export function getNotifications( resource ) {
 function processNotification(event) {
     const data = event.getData(); // get data from event
     const cont = parseInt($("#cont_notificacion").text());    
-
+    
     if (data.tp && data.tp == "unm") {
         var unit = getUnitById( data.unit );
 
         $("#root-notification").prepend( addNotificationModal(unit, data, cont) );
+
+        $("#root_table_notificacions").prepend( addNotificationView(unit, data, cont) );
 
         $("#cont_notificacion").text(cont + 1);
 
@@ -119,6 +121,21 @@ const addNotificationModal = (unit, data, cont) => {
                     </button>
                 </div>
             </div>`;
+}
+
+const addNotificationView = (unit, data, cont) => {
+    return `
+        <div class="card shadow-sm border rounded-3 p-2 notification-item" id="0">
+            <div class="d-flex align-items-center gap-2">
+                <span class="badge bg-light text-dark">${cont + 1}</span>
+                <img src="${unit.info?.icon ?? ''}" class="rounded" width="18" height="18">
+                <div class="flex-grow-1">
+                    <div class="fw-semibold small">${unit.info.nameUnit}</div>
+                    <div class="text-muted small">${data.name}</div>
+                </div>
+                <button class="btn-close btn-sm btn-remove-alert-notificacion"></button>
+            </div>
+        </div>`;
 }
 
 const addNotificationToast = (unit, data) => {

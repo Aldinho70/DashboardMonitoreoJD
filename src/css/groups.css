@@ -5,3 +5,187 @@
                 'FILSA MONITOREO':'Filsa',
                 'FILSA NO ACTIVAS':'Filsa 2',
                 'GR-AREA 1':'GR A1', */
+
+.module-card {
+  border-radius: 14px;
+  border: 1px solid #e9ecef;
+  background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+}
+
+.module-card__header {
+  padding: 0.45rem 0.65rem;
+  border-bottom: 1px solid #eef1f4;
+}
+
+.module-card__icon {
+  border-radius: 8px;
+  border: 1px solid #e6e8eb;
+  background: #fff;
+}
+
+.module-card__title-wrap {
+  max-width: 100%;
+}
+
+.module-card__title {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.2px;
+  color: #243447;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.module-card__body {
+  padding: 0.45rem 0.65rem 0.55rem;
+}
+
+.module-chip {
+  font-size: 0.74rem;
+  font-weight: 600;
+  line-height: 1.15;
+  padding: 0.3rem 0.5rem;
+  border-width: 1px;
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+}
+
+.module-chip .badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.module-chip--total {
+  white-space: nowrap;
+}
+
+@media (max-width: 1199.98px) {
+  .module-card__title {
+    font-size: 0.88rem;
+  }
+
+  .module-chip {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.46rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .module-card__header {
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .module-chip--total {
+    margin-left: auto;
+  }
+}
+
+.module-card--compact .module-card__header {
+  padding: 0.35rem 0.55rem;
+}
+
+.module-card--compact .module-card__body {
+  padding: 0.35rem 0.55rem 0.45rem;
+}
+
+.module-card__actions {
+  row-gap: 0.28rem !important;
+  column-gap: 0.28rem !important;
+}
+
+.module-card--compact .module-chip {
+  font-size: 0.69rem;
+  padding: 0.22rem 0.42rem;
+}
+
+.module-card--compact .module-chip .badge {
+  font-size: 0.66rem;
+}
+
+@media (max-width: 991.98px) {
+  .module-card--compact .module-card__title {
+    font-size: 0.84rem;
+  }
+
+  .module-card--compact .module-chip {
+    font-size: 0.66rem;
+    padding: 0.2rem 0.4rem;
+  }
+}
+
+.unit-card {
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+  background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+}
+
+.unit-card__header {
+  padding: 0.45rem 0.55rem;
+  border-bottom: 1px solid #eef1f4;
+}
+
+.unit-card__icon {
+  border: 1px solid #e6e8eb;
+  background: #fff;
+}
+
+.unit-card__name {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #27384a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.unit-card__name:hover {
+  color: #0d6efd;
+}
+
+.unit-card__time {
+  font-size: 0.66rem;
+  color: #6c757d;
+  line-height: 1.1;
+}
+
+.unit-card__cmd-btn {
+  font-size: 0.66rem;
+  padding: 0.2rem 0.45rem;
+}
+
+.unit-card__body {
+  padding: 0.42rem 0.55rem 0.5rem;
+}
+
+.unit-card__chips {
+  gap: 0.25rem;
+}
+
+.unit-chip {
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: #334155;
+  border: 1px solid #e5e7eb;
+  padding: 0.22rem 0.45rem;
+  max-width: 100%;
+}
+
+@media (max-width: 1199.98px) {
+  .unit-card__name {
+    font-size: 0.78rem;
+  }
+
+  .unit-card__time,
+  .unit-chip,
+  .unit-card__cmd-btn {
+    font-size: 0.62rem;
+  }
+}

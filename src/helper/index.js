@@ -1,4 +1,4 @@
-import { env } from "../../config.js";
+﻿import { env } from "../../config.js";
 
 export function createHTML_PanelbyStatus(data) {
     let objeto = {};
@@ -23,334 +23,153 @@ export function create_button_module(data_group = {}, data, id_tag, filter) {
             const contSinConexion = Object.keys(_data.sinconexion).length;
             const contWarning = Object.keys(_data.warning).length;
             const contGeneral = contApagadas + contRalenti + contMovimiento + contSinConexion + contWarning;
+            const groupIdSafe = titulo.replace(/[\s\/]/g, "_");
+            const titleIdSafe = _titulo.replaceAll(" ", "_");
 
             $(id_tag).append(`<!-- Grupo -->
-                <div class="toast fade show w-100 shadow rounded-4 rounded overflow-hidden mb-3" role="alert" aria-live="assertive" aria-atomic="true" id="${_titulo.replaceAll(" ", "_")}">
-                    <!-- Header -->
-                    <div class="toast-header  text-bg-light">
-                    ${(env.img[_titulo])
-                    ? `<img src="${env.img[_titulo]}" alt="icon" class="me-2 img-fluid" width="35" id="img-${_titulo.replaceAll(" ", "_")}">`
-                    : (data_group[titulo])
-                        ? `<img src="${data_group[titulo].info.icon}" alt="icon" class="img-fluid" width="35" id="img-${_titulo.replaceAll(" ", "_")}">`
-                        : '<img src="./src/assets/img/logojd.png" alt="icon" class="img-fluid" width="35" id="img-${_titulo.replaceAll(" ", "_")}">'
-                    }
-
-                        <button class="btn btn-light text-start flex-grow-1 rounded-5" onclick="getInfoUnits('${titulo}', 'general')">
-                            <strong class="font-monospace me-auto fs-5 btn">
-                                ${_titulo}
-                                <span class="badge bg-dark fs-6 cont" id="${titulo}">${contGeneral}</span>
-                            </strong>
-                        </button>
-
-                        <div class="d-flex gap-1 align-items-center ms-auto">
-                        <!-- Ralenti -->
-                        <button type="button" 
-                            class="btn btn-warning btn-sm rounded-4 p-1 ${_status_remove.includes('ralenti') ? 'd-none' : ''}" 
-                            onclick="getInfoUnits('${titulo}', 'ralenti');">
-                            <span class="d-none d-xl-inline fs-6">Ralenti</span>
-                            <i class="bi bi-bootstrap-reboot d-xl-none"></i>
-                            <span class="badge text-bg-secondary cont" id="cont-${titulo}-ralenti">${contRalenti}</span>
-                        </button>
-
-                        <!-- Apagadas -->
-                        <button type="button" 
-                            class="btn btn-primary btn-sm rounded-4 p-1 ${_status_remove.includes('apagadas') ? 'd-none' : ''}" 
-                            onclick="getInfoUnits('${titulo}', 'apagadas')">
-                            <span class="d-none d-xl-inline fs-6">Apagadas</span>
-                            <i class="bi bi-power d-xl-none"></i>
-                            <span class="badge text-bg-secondary cont" id="cont-${titulo}-apagadas">${contApagadas}</span>
-                        </button>
-
-                        <!-- Warning -->
-                        ${(_titulo == 'DOBLES' || _titulo == 'HRH CAJAS' || _titulo == 'DIFEYRO DOBLES')
-                            ? `<button type="button" class="btn btn-danger rounded-5 btn-sm p-1" onclick="getInfoUnits('${titulo}', 'warning')">
-                                    <span class="d-none d-xl-inline fs-6">Unidad sin reportar</span>
-                                    <i class="bi bi-power d-xl-none"></i>
-                                    <span class="badge text-bg-dark cont" id="cont-${titulo}-warning">${contWarning}</span>
-                                </button>`
-                            : ''
-                        }
-                        </div>
-                    </div>
-
-                    <!-- Body -->
-                    <div class="toast-body bg-light">
-                        <div class="row g-2">
-                        <!-- Movimiento -->
-                        <div class="col-12 col-sm-6">
-                            <button type="button"
-                            class="btn btn-success rounded-5 w-100 d-flex align-items-center justify-content-center flex-grow-1 m-1 p-1 ${_status_remove.includes('movimiento') ? 'd-none' : ''}"
-                            onclick="getInfoUnits('${titulo}', 'movimiento');"
-                            data-bs-toggle="tooltip" data-bs-placement="top" title="Movimiento">
-                            <span class="font-monospace d-none d-lg-inline fs-6">Movimiento</span>
-                            <i class="bi bi-arrow-right d-lg-none"></i>
-                            <span class="font-monospace badge bg-dark cont ms-1 fs-6" id="cont-${titulo}-movimiento">${contMovimiento}</span>
+                <div class="toast fade show w-100 shadow-sm border-0 overflow-hidden mb-1 module-card module-card--compact" role="alert" aria-live="assertive" aria-atomic="true" id="${titleIdSafe}">
+                    <div class="toast-header bg-white module-card__header">
+                        <div class="d-flex align-items-center min-w-0 flex-grow-1 gap-2">
+                            ${(env.img[_titulo])
+                                ? `<img src="${env.img[_titulo]}" alt="icon" class="img-fluid module-card__icon" width="34" id="img-${titleIdSafe}">`
+                                : (data_group[titulo])
+                                    ? `<img src="${data_group[titulo].info.icon}" alt="icon" class="img-fluid module-card__icon" width="34" id="img-${titleIdSafe}">`
+                                    : `<img src="./src/assets/img/logojd.png" alt="icon" class="img-fluid module-card__icon" width="34" id="img-${titleIdSafe}">`
+                            }
+                            <button class="btn btn-link text-start text-decoration-none p-0 module-card__title-wrap" onclick="getInfoUnits('${titulo}', 'general')">
+                                <strong class="module-card__title">${_titulo}</strong>
                             </button>
                         </div>
+                        <button type="button" class="btn btn-dark btn-sm rounded-pill module-chip module-chip--total" onclick="getInfoUnits('${titulo}', 'general')">
+                            Total <span class="badge text-bg-light cont ms-1" id="${titulo}">${contGeneral}</span>
+                        </button>
+                    </div>
 
-                        <!-- Sin Conexión -->
-                        <div class="col-12 col-sm-6">
+                    <div class="toast-body bg-white module-card__body">
+                        <div class="d-flex flex-wrap align-items-center gap-1 module-card__actions">
                             <button type="button"
-                            class="btn w-100 rounded-5 d-flex align-items-center justify-content-center flex-grow-1 m-1 p-1 btn-secondary ${contSinConexion > 0 ? 'alert-btn btn-danger' : 'btn-secondary'} ${_status_remove.includes('sin_conexion') ? 'd-none' : ''}"
-                            id="btn-${titulo.replace(/[\s\/]/g, "_")}-sinconexion"
-                            onclick="getInfoUnits('${titulo}', 'sinconexion', '#btn-${titulo}-sinconexion'); removeClass_v2('#btn-${titulo.replace(/[\s\/]/g, "_")}-sinconexion', 'alert-btn btn-danger');"
-                            data-bs-toggle="tooltip" data-bs-placement="top" title="Sin conexión">
-                            <span class="font-monospace d-none d-lg-inline fs-6">Sin conexión</span>
-                            <i class="bi bi-wifi-off d-lg-none"></i>
-                            <span class="font-monospace badge bg-dark cont ms-1 fs-6" id="cont-${titulo}-sinconexion">${contSinConexion}</span>
+                                class="btn btn-success btn-sm rounded-pill module-chip ${_status_remove.includes('movimiento') ? 'd-none' : ''}"
+                                onclick="getInfoUnits('${titulo}', 'movimiento');"
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Movimiento">
+                                <i class="bi bi-arrow-right me-1"></i>
+                                <span class="d-none d-xxl-inline">Movimiento</span>
+                                <span class="d-xxl-none">Mov.</span>
+                                <span class="badge text-bg-dark cont ms-1" id="cont-${titulo}-movimiento">${contMovimiento}</span>
                             </button>
-                        </div>
+
+                            <button type="button"
+                                class="btn btn-warning btn-sm rounded-pill module-chip ${_status_remove.includes('ralenti') ? 'd-none' : ''}"
+                                onclick="getInfoUnits('${titulo}', 'ralenti');">
+                                <i class="bi bi-bootstrap-reboot me-1"></i>
+                                Ralenti
+                                <span class="badge text-bg-dark cont ms-1" id="cont-${titulo}-ralenti">${contRalenti}</span>
+                            </button>
+
+                            <button type="button"
+                                class="btn btn-primary btn-sm rounded-pill module-chip ${_status_remove.includes('apagadas') ? 'd-none' : ''}"
+                                onclick="getInfoUnits('${titulo}', 'apagadas')">
+                                <i class="bi bi-power me-1"></i>
+                                Apagadas
+                                <span class="badge text-bg-dark cont ms-1" id="cont-${titulo}-apagadas">${contApagadas}</span>
+                            </button>
+
+                            <button type="button"
+                                class="btn btn-sm rounded-pill module-chip ${contSinConexion > 0 ? 'alert-btn btn-danger' : 'btn-secondary'} ${_status_remove.includes('sin_conexion') ? 'd-none' : ''}"
+                                id="btn-${groupIdSafe}-sinconexion"
+                                onclick="getInfoUnits('${titulo}', 'sinconexion', '#btn-${groupIdSafe}-sinconexion'); removeClass_v2('#btn-${groupIdSafe}-sinconexion', 'alert-btn btn-danger');"
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Sin conexiÃ³n">
+                                <i class="bi bi-wifi-off me-1"></i>
+                                <span class="d-none d-xxl-inline">Sin conexion</span>
+                                <span class="d-xxl-none">Sin conex.</span>
+                                <span class="badge text-bg-dark cont ms-1" id="cont-${titulo}-sinconexion">${contSinConexion}</span>
+                            </button>
+
+                            ${(_titulo == 'DOBLES' || _titulo == 'HRH CAJAS' || _titulo == 'DIFEYRO DOBLES')
+                                ? `<button type="button" class="btn btn-danger btn-sm rounded-pill module-chip" onclick="getInfoUnits('${titulo}', 'warning')">
+                                        <i class="bi bi-exclamation-triangle me-1"></i>
+                                        <span class="d-none d-xxl-inline">Sin reportar</span>
+                                        <span class="d-xxl-none">S/rep.</span>
+                                        <span class="badge text-bg-dark cont ms-1" id="cont-${titulo}-warning">${contWarning}</span>
+                                    </button>`
+                                : ''
+                            }
                         </div>
                     </div>
-                    </div>
+                </div>
                 <!-- ----- -->
             `);
         }
     }
 }
-
 export function create_table_module(data, id_table) {
     $(id_table).empty();
     for (const key in data) {
         const objeto = data[key];
+        const velocidad = objeto.gps?.velocidad ?? 0;
+        const voltaje = Math.round(objeto.sensors?.voltaje ?? 0);
+        const bateria = Math.round(objeto.sensors?.bateria ?? 100);
+        const ignicionEncendida = Boolean(objeto.sensors?.ignicion ?? 1);
+        const equipo = objeto.personalizados?.equipo ?? "Sin equipo";
+        const ultimaLectura = objeto.gps?.time ?? "Sin dato";
 
         const html = `
         <tr>
-            <td>
-                <div class="toast fade show w-100 shadow border-0 rounded-3 overflow-hidden mb-3" role="alert" aria-live="assertive" aria-atomic="true">
-                <!-- Header -->
-                    <div class="toast-header bg-secondary bg-opacity-25 border-bottom">
-                        <img class="rounded me-2" src="${objeto.info.icon}" alt="Icon" width="35" height="35" />
-                        
-                        <strong class="me-auto">
-                            <button type="button" class="btn btn-secondary btn-sm rounded-5" onclick="getSelectedUnitInfo(${objeto.info.idUnit})">
+            <td class="p-1 border-0">
+                <div class="toast fade show w-100 shadow-sm border-0 overflow-hidden mb-2 unit-card" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-white unit-card__header">
+                        <img class="rounded-2 me-2 unit-card__icon" src="${objeto.info.icon}" alt="Icon" width="34" height="34" />
+
+                        <div class="min-w-0 flex-grow-1">
+                            <button type="button" class="btn btn-link unit-card__name p-0 text-start text-decoration-none" onclick="getSelectedUnitInfo(${objeto.info.idUnit})">
                                 ${objeto.info.nameUnit}
                             </button>
-
-                            ${ (objeto.personalizados?.IDMET)
-                                ? ` <div class="btn-group dropend">
-                                        <button type="button" class="btn btn-danger dropdown-toggle btn-sm" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Enviar comandos
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a class="btn dropdown-item" onclick="sendCommand( '${objeto.personalizados?.IDMET?.v}', '1' )" >Reset</a>
-                                            </li>
-                                            <li>
-                                                <a class="btn dropdown-item" onclick="sendCommand( '${objeto.personalizados?.IDMET?.v}', '2' )">Paro de motor</a>
-                                            </li>
-                                            <li>
-                                                <a class="btn dropdown-item" onclick="sendCommand( '${objeto.personalizados?.IDMET?.v}', '3' )">Quitar paro de motor</a>
-                                            </li>
-                                        </ul>
-                                    </div>`
-                                : ``
-                             }
-                        </strong>
-
-                        <small class="text-muted">Últ MSJ: ${objeto.gps?.time ?? ""}</small>
-                    </div>
-
-                    <!-- Body -->
-                    <div class="toast-body bg-light">
-                        <!-- Fila 1 -->
-                        <div class="row mb-2">
-                            <div class="col-12 d-flex align-items-center flex-wrap gap-3">
-                                
-                                <!-- Operador -->
-                                <span class="d-flex align-items-center">
-                                <i class="bi bi-person-circle me-1 text-primary"></i>
-                                <strong>${"JD"}</strong>
-                                </span>
-
-                                <!-- Velocidad -->
-                                <span class="d-flex align-items-center">
-                                <i class="bi bi-speedometer me-1 text-secondary"></i>
-                                ${objeto.gps?.velocidad ?? 0} km/h
-                                </span>
-
-                                <!-- Equipo -->
-                                <span class="d-flex align-items-center">
-                                <i class="bi bi-tools me-1 text-dark"></i>
-                                ${objeto.personalizados?.equipo ?? "Sin equipo"}
-                                </span>
-
-                                <!-- Voltaje -->
-                                <span class="d-flex align-items-center text-danger">
-                                <i class="bi bi-lightning-charge me-1"></i>
-                                ${Math.round(objeto.sensors?.voltaje ?? 0)} Volts
-                                </span>
-
-                            </div>
+                            <div class="unit-card__time">Ult. MSJ: ${ultimaLectura}</div>
                         </div>
 
-                        <!-- Fila 2 -->
-                        <div class="row">
-                            <div class="col-12 d-flex align-items-center flex-wrap gap-3">
+                        ${(objeto.personalizados?.IDMET)
+                            ? `<div class="btn-group dropstart">
+                                    <button type="button" class="btn btn-outline-danger btn-sm rounded-pill unit-card__cmd-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Comandos
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" onclick="sendCommand('${objeto.personalizados?.IDMET?.v}', '1')">Reset</a></li>
+                                        <li><a class="dropdown-item" onclick="sendCommand('${objeto.personalizados?.IDMET?.v}', '2')">Paro de motor</a></li>
+                                        <li><a class="dropdown-item" onclick="sendCommand('${objeto.personalizados?.IDMET?.v}', '3')">Quitar paro de motor</a></li>
+                                    </ul>
+                                </div>`
+                            : ``
+                        }
+                    </div>
 
-                                <!-- Batería -->
-                                <span class="d-flex align-items-center">
-                                    <i class="bi bi-battery-charging me-1 text-success"></i>
-                                    ${Math.round(objeto.sensors?.bateria ?? 100)} %
-                                </span>
-
-                                <!-- Ignición -->
-                                <span class="d-flex align-items-center">
-                                    <i class="bi bi-ev-front me-1 text-info"></i>
-                                    ${objeto.sensors?.ignicion ?? 1 ? "Encendido" : "Apagado"}
-                                </span>
-
-                            </div>
+                    <div class="toast-body bg-white unit-card__body">
+                        <div class="d-flex flex-wrap align-items-center unit-card__chips">
+                            <span class="badge rounded-pill text-bg-light unit-chip">
+                                <i class="bi bi-person-circle me-1 text-primary"></i>JD
+                            </span>
+                            <span class="badge rounded-pill text-bg-light unit-chip">
+                                <i class="bi bi-speedometer me-1 text-secondary"></i>${velocidad} km/h
+                            </span>
+                            <span class="badge rounded-pill text-bg-light unit-chip">
+                                <i class="bi bi-tools me-1 text-dark"></i>${equipo}
+                            </span>
+                            <span class="badge rounded-pill text-bg-light unit-chip">
+                                <i class="bi bi-lightning-charge me-1 text-danger"></i>${voltaje} V
+                            </span>
+                            <span class="badge rounded-pill text-bg-light unit-chip">
+                                <i class="bi bi-battery-charging me-1 text-success"></i>${bateria} %
+                            </span>
+                            <span class="badge rounded-pill ${ignicionEncendida ? "text-bg-success" : "text-bg-secondary"} unit-chip">
+                                <i class="bi bi-ev-front me-1"></i>${ignicionEncendida ? "Encendido" : "Apagado"}
+                            </span>
                         </div>
                     </div>
                 </div>
-
             </td>
         </tr>`;
 
         $(id_table).append(html);
     }
 }
-
-// export function create_map_module_div(objeto) {
-//     $("#map").html(`
-//         <iframe
-//             width="100%" height="100%" frameborder="0" style="border:0"
-//             src="https://maps.google.com/maps?q=${objeto.gps.longitud},${objeto.gps.latitud}&output=embed" allowfullscreen>
-//         </iframe>
-//     `);
-
-//     $("#table-info").html(`
-//         <thead>
-//                 <tr>
-//                     <th scope="col"> <img src="${objeto.info.icon}" width="24" alt=""> </th>
-//                     <th scope="col">${objeto.info.nameUnit}</th>
-//                     <th scope="col"></th>
-//                     <th scope="col">
-//                         <div class="btn-group dropup auto-ms" role="group">
-//                             <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-//                                 Opciones
-//                             </button>
-//                             <ul class="dropdown-menu">
-//                                 <li>
-//                                     <button type="button" class="dropdown-item " id="btn-campospers" onclick="getFields(${objeto.personalizados.id})">
-//                                         Campos personalizados
-//                                     </button>
-//                                 </li>
-//                                 <li>
-//                                     <button type="button" class="dropdown-item " id="btn-mapear" onclick="getSensores(${objeto.personalizados.id})">
-//                                         Sensores
-//                                     </button>
-//                                 </li>
-//                                 <li>
-//                                     <button type="button" class="dropdown-item " id="btn-mapear" onclick="getRecorridoUnit(${objeto.personalizados.id})">
-//                                         Mapear recorrido
-//                                     </button>
-//                                 </li>
-//                                 <li>
-//                                     <button type="button" class="dropdown-item " id="btn-mapear" onclick="getMensajes(${objeto.personalizados.id})">
-//                                         Ultimos mensajes
-//                                     </button>
-//                                 </li>
-//                             </ul>
-//                         </div>
-//                     </th>
-//                     <th scope="col"></th>
-//                 </tr>
-//             </thead>
-//             <tbody>
-//                 <tr>
-//                     <th scope="row">Origen:</th>
-//                     <td colspan="4">${objeto.personalizados?.origen.v ?? 'Error  de su campo personalizado'}</td>
-//                 </tr>
-//                 <tr>
-//                     <th scope="row">Destino:</th>
-//                     <td colspan="4">${objeto.personalizados?.destino.v ?? 'Error de su campo personalizado'}</td>
-//                 </tr>
-//                 <tr>
-//                     <th scope="row">Estatus:</th>
-//                     <td colspan="4">${objeto.personalizados?.status.v ?? 'Error  de su campo personalizado'}</td>
-//                 </tr>
-//                 <tr>
-//                     <th scope="row"></th>
-//                     <td></td>
-//                     <td></td>
-//                     <td></td>
-//                     <td></td>
-//                 </tr>
-//             </tbody>
-//     `);
-// }
-
-// export function create_map_module_modal(objeto) {
-//     // console.log(objeto);
-
-//     // Generar contenido elegante para el modal
-//     $("#modal-content").html(`
-//       <div class="modal-header bg-dark text-white">
-//         <h5 class="modal-title">🚗 Información de la Unidad</h5>
-//         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-//       </div>
-//       <div class="modal-body">
-//         <!-- Mapa -->
-//         <div id="map" class=" rounded overflow-hidden shadow-sm">
-//             <iframe 
-//                 class="rounded"
-//                 width="100%" height="100%" frameborder="0" style="border:0"
-//                 src="https://maps.google.com/maps?q=${objeto.gps.longitud},${objeto.gps.latitud}&t=k&output=embed" 
-//                 allowfullscreen>
-//             </iframe>
-//         </div>
-
-//         <!-- Información en tabla -->
-//         <div class="card shadow-sm">
-//           <div class="card-header bg-secondary text-white">
-//             <div class="d-flex align-items-center">
-//               <img src="${objeto.info.icon}" class="rounded-circle me-2" width="32" alt="">
-//               <h6 class="mb-0">${objeto.info.nameUnit}</h6>
-//             </div>
-//           </div>
-//           <div class="card-body p-3">
-//             <table class="table table-hover table-bordered">
-//               <tbody>
-//                 <tr>
-//                   <th>Origen:</th>
-//                   <td>${objeto.personalizados?.origen?.v ?? "Error de su campo personalizado"}</td>
-//                 </tr>
-//                 <tr>
-//                   <th>Destino:</th>
-//                   <td>${objeto.personalizados?.destino?.v ?? "Error de su campo personalizado"}</td>
-//                 </tr>
-//                 <tr>
-//                   <th>Estatus:</th>
-//                   <td>${objeto.personalizados?.status?.v ?? "Error de su campo personalizado"}</td>
-//                 </tr>
-//               </tbody>
-//             </table>
-//           </div>
-//         </div>
-
-//         <!-- Opciones -->
-//         <div class="mt-4">
-//           <div class="btn-group dropup w-100">
-//             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-//               Opciones
-//             </button>
-//             <ul class="dropdown-menu w-100">
-//               <li><button class="dropdown-item" onclick="getFields(${objeto.personalizados.id})">Campos personalizados</button></li>
-//               <li><button class="dropdown-item" onclick="getSensores(${objeto.personalizados.id})">Sensores</button></li>
-//               <li><button class="dropdown-item" onclick="getRecorridoUnit(${objeto.personalizados.id})">Mapear recorrido</button></li>
-//               <li><button class="dropdown-item" onclick="getMensajes(${objeto.personalizados.id})">Últimos mensajes</button></li>
-//             </ul>
-//           </div>
-//         </div>
-//       </div>
-//     `);
-
-//     // Mostrar el modal
-//     const modal = new bootstrap.Modal(document.getElementById("dynamicModal"));
-//     modal.show();
-// }
 
 export function create_select_units(data) {
     for (const unit in data) {
@@ -410,3 +229,4 @@ function getStateOnline(data) {
 export function removeClass_v2(tag, className) {
     $(tag).removeClass(className);
 }
+
