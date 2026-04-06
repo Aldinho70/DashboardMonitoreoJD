@@ -2,47 +2,98 @@ import { _login } from '../../../../index.js';
 import { getGPS, getInfo, getPersonalizados, getSensores } from './device.js'
 import { getAvl } from './wialonAPI.js'
 import { showModal } from '../../../utils/utils.js'
+import { env } from '../../../../config.js';
 
+// export const getUnitsStatus = async (units) => {
+
+//     const VACIO = {};
+//     const CARGADO = {};
+//     const ESPERA_CARGA = {};
+//     const ESPERA_DESCARGA = {};
+//     const SIN_STATUS = {};
+
+//     for (const key in units) {
+//         const element = await units[key].personalizados;
+        
+//         if (element && 'status' in element) {
+//             const value = units[key].personalizados[env.NAME_FIELD_STATUS_OPERATION].v;
+//             console.log(value);
+            
+            
+//             if ( value.match(/\b(?:VACIO)\b/i) ) {
+//                 VACIO[ units[key].info.nameUnit ] = units[key];
+//             }
+//             else if ( value.match(/\b(?:carga|ESPERA_CARGA)\b/i) ) {
+//                 ESPERA_CARGA[ units[key].info.nameUnit ] = units[key];
+//             }
+//             else if ( value.match(/\b(?:cargado)\b/i) ) {
+//                 CARGADO[ units[key].info.nameUnit ] = units[key];
+//             }
+//             else if ( value.match(/\b(?:descarga|ESPERA_DESCARGA)\b/i) ) {
+//                 ESPERA_DESCARGA[ units[key].info.nameUnit ] = units[key];
+//             }else{
+//                 SIN_STATUS[ units[key].info.nameUnit ] = units[key];
+//             }
+//         }
+//     }
+
+//     return {
+//         VACIO,
+//         CARGADO,
+//         ESPERA_CARGA,
+//         ESPERA_DESCARGA,
+//         SIN_STATUS
+//     }
+// };
+
+/* Vayas mierdas que tengo que hacer solo por que los monitoristas les vale verga hacer bien su jale Putos */
 export const getUnitsStatus = async (units) => {
 
-    const VACIO = {};
-    const CARGADO = {};
-    const ESPERA_CARGA = {};
-    const ESPERA_DESCARGA = {};
-    const SIN_STATUS = {};
+    const result = {
+        VACIO: {},
+        CARGADO: {},
+        ESPERA_CARGA: {},
+        ESPERA_DESCARGA: {},
+        SIN_STATUS: {}
+    };
+
+    const rules = [
+        { key: 'VACIO', regex: /\bVACIO\b/i },
+        { key: 'ESPERA_CARGA', regex: /\b(carga|ESPERA\s*DE\s*CARGA)\b/i },
+        { key: 'CARGADO', regex: /\bCARGADO\b/i },
+        { key: 'ESPERA_DESCARGA', regex: /\b(descarga|ESPERA\s*DESCARGA)\b/i }
+    ];
 
     for (const key in units) {
-        const element = await units[key].personalizados;
-        
-        if (element && 'status' in element) {
-            const value = units[key].personalizados.status.v;
-            
-            if ( value.match(/\b(?:VACIO)\b/i) ) {
-                VACIO[ units[key].info.nameUnit ] = units[key];
-            }
-            else if ( value.match(/\b(?:carga|ESPERA_CARGA)\b/i) ) {
-                ESPERA_CARGA[ units[key].info.nameUnit ] = units[key];
-            }
-            else if ( value.match(/\b(?:cargado)\b/i) ) {
-                CARGADO[ units[key].info.nameUnit ] = units[key];
-            }
-            else if ( value.match(/\b(?:descarga|ESPERA_DESCARGA)\b/i) ) {
-                ESPERA_DESCARGA[ units[key].info.nameUnit ] = units[key];
-            }else{
-                SIN_STATUS[ units[key].info.nameUnit ] = units[key];
-            }
+
+        const unit = units[key];
+
+        const value =
+            unit?.personalizados?.[env.NAME_FIELD_STATUS_OPERATION]?.v
+            ?.toString()
+            ?.toUpperCase()
+            ?.trim();
+
+        const unitName = unit?.info?.nameUnit || `unit_${key}`;
+
+        if (!value) {
+            result.SIN_STATUS[unitName] = unit;
+            continue;
+        }
+
+        const match = rules.find(rule => rule.regex.test(value));
+
+        if (match) {
+            result[match.key][unitName] = unit;
+        } else {
+            result.SIN_STATUS[unitName] = unit;
         }
     }
 
-    return {
-        VACIO,
-        CARGADO,
-        ESPERA_CARGA,
-        ESPERA_DESCARGA,
-        SIN_STATUS
-    }
+    // console.log(result);
+    
+    return result;
 };
-
 
 export function create_status_module( conexion ){
     $(".status-table").empty();

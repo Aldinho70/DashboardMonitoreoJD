@@ -101,6 +101,7 @@ export function create_button_module(data_group = {}, data, id_tag, filter) {
         }
     }
 }
+
 export function create_table_module(data, id_table) {
     $(id_table).empty();
     for (const key in data) {

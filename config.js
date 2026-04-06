@@ -16,22 +16,23 @@ export const env = {
 
         },
         seccion_grupos_2: {
-            '02 UNIDADES CARGADAS TFS/TCS': { name: 'Cargadas'},
-            '02 UNIDADES VACIAS TFS/TCS': { name: 'Vacias'},
             'CD JUAREZ': { name: 'Juarez'},
             '08 TRAFUSA': { name: 'Trafusa'},
             'FILSA': { name: 'Filsa'},
+            // '02 UNIDADES CARGADAS TFS/TCS': { name: 'Cargadas'},
+            // '02 UNIDADES VACIAS TFS/TCS': { name: 'Vacias'},
 
         },
 
     /* Estados de las unidades */
     Estados_de_unidades: true,
+    NAME_FIELD_STATUS_OPERATION: "1STATUSDASHBOARD",
         statusInteres: {
-            // 'VACIO': {name: 'VACIO'},
-            // 'CARGADO': {name: 'CARGADO'},
+            'VACIO': {name: 'Vacios'},
+            'CARGADO': {name: 'Cargados'},
             'ESPERA_CARGA': {name: 'Espera carga'},
-            'ESPERA_DESCARGA': {name: 'Esspera descarga'},
-            // 'SIN_STATUS': 'SIN CARGA',
+            'ESPERA_DESCARGA': {name: 'Espera descarga'},
+            // 'SIN_STATUS': {name: 'Sin estatus'},
         }, 
 
     Name_cajas: '',

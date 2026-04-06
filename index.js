@@ -74,6 +74,8 @@ export const _login = ( token ) =>{
                 if (Object.keys(env.seccion_grupos_2 || {}).length) {
                     env.statusInteres = { ...env.statusInteres, ...env.seccion_grupos_2 };
 
+                    // console.log(env.statusInteres);
+                    
                     getGrupos( group )
                     .then( response => {
                         info_groups = response;
@@ -87,6 +89,10 @@ export const _login = ( token ) =>{
                     _unitsbyStatus = createHTML_PanelbyStatus(_unitsbyStatus); 
                     _unitsbyStatus = { ..._unitsbyStatus, ..._groups_aux}                    
                     create_button_module(info_groups , _unitsbyStatus, '#button_module2', env.statusInteres);
+                    console.log(info_groups);
+                    // console.log(_unitsbyStatus);
+                    // console.log('#button_module2');
+                    // console.log(env.statusInteres);
                 });
             }
             
