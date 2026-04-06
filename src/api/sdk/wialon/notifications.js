@@ -133,7 +133,7 @@ const addNotificationView = (unit, data, cont) => {
                     <div class="fw-semibold small">${unit.info.nameUnit}</div>
                     <div class="text-muted small">${data.name}</div>
                 </div>
-                <button class="btn-close btn-sm btn-remove-alert-notificacion"></button>
+                <button class="btn-close btn-sm btn-remove-alert-notificacion" onclick="handleNotifications(${cont}, '${unit.info.nameUnit}', '${data.t}', 'user_root');"></button>
             </div>
         </div>`;
 }

@@ -84,7 +84,14 @@ export function create_button_module(data_group = {}, data, id_tag, filter) {
                                 <span class="badge text-bg-dark cont ms-1" id="cont-${titulo}-sinconexion">${contSinConexion}</span>
                             </button>
 
-                            ${(_titulo == 'DOBLES' || _titulo == 'HRH CAJAS' || _titulo == 'DIFEYRO DOBLES')
+                            
+                            ${(() => {
+                                /*  OJO ESTA PARTE ES PARA CUANDO QUIRAN VER LAS UNIDADES QUE TIENEN MAS DE 30 DIAS SIN REPORTAR, ESTO AGREGARA UN QUINTO BOTON. ESTO SOLO SE 
+                                    AGREGA A GRUPOS QUE SE PIDEN, SI SE REQUIERE HACER ALGUNA VALIDACION O ALGO POR EL ESTILO SE DEBE DE DESCOMENTAR EL VALOR TRUE PARA QUE AGREGUE EL
+                                    BOTON A TODOS LOS GRUPOS.  
+                                */ return '' })()}
+
+                            ${(_titulo == 'DOBLES' || _titulo == 'HRH CAJAS' || _titulo == 'DIFEYRO DOBLES' /*|| true*/)
                                 ? `<button type="button" class="btn btn-danger btn-sm rounded-pill module-chip" onclick="getInfoUnits('${titulo}', 'warning')">
                                         <i class="bi bi-exclamation-triangle me-1"></i>
                                         <span class="d-none d-xxl-inline">Sin reportar</span>

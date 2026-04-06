@@ -20,7 +20,7 @@ $( () => {
                 <aside class="col-12 col-xl-3 d-flex flex-column min-h-0">
     
                     <!-- Notificaciones -->
-                    <div class="main-panel mb-2 notifications-panel">
+                    <div class="main-panel mb-2 d-none d-xl-block notifications-panel">
                         <div class="main-panel__head">
                             <span class="main-panel__title">Notificaciones</span>
                         </div>
