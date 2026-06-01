@@ -12,7 +12,10 @@ import { env } from '../../../../config.js';
 
     export const getSensores = (unidad) => {
         
-        const sensores = unidad.getSensors(); //console.log(unidad.getName()); console.log(sensores)
+        const sensores = unidad.getSensors(); 
+        if( unidad.getName() == 'HRH 087' ){
+            console.log(unidad.getName()); console.log(sensores)
+        }
         const lastMensajes = unidad.getLastMessage();
 
         const metadatos = {
@@ -135,12 +138,12 @@ function getStateunit(vehicle) {
     if (vehicle.ignicion === 0) {
         return vehicle.State = 'apagadas' /*'movimiento'*/;
     } else if (vehicle.ignicion === 1 && vehicle.velocidad === 0) {
-        // return vehicle.State = 'ralenti' /*'movimiento'*/;
-        if( vehicle.tipo == 'Caja'){
-            return vehicle.State = 'movimiento' /*'movimiento'*/;
-        }else{
-            return vehicle.State = 'ralenti' /*'movimiento'*/;
-        }
+        return vehicle.State = 'ralenti' /*'movimiento'*/;
+        // if( vehicle.tipo == 'Caja'){
+        //     return vehicle.State = 'movimiento' /*'movimiento'*/;
+        // }else{
+        //     return vehicle.State = 'ralenti' /*'movimiento'*/;
+        // }
     } else if (vehicle.ignicion === 1 && vehicle.velocidad > 0) {
         return vehicle.State = 'movimiento';
     } else if( vehicle.ignicion == 'N/A' && vehicle.velocidad > 0  ){
