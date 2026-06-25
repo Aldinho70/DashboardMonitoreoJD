@@ -100,10 +100,10 @@ export function create_button_module(data_group = {}, data, id_tag, filter) {
                                     BOTON A TODOS LOS GRUPOS.  
                                 */ return '' })()}
 
-                            ${(_titulo == 'DOBLES' || _titulo == 'HRH CAJAS' || _titulo == 'DIFEYRO DOBLES' /*|| true*/)
+                            ${( /*_titulo == 'DOBLES' || _titulo == 'HRH CAJAS' || _titulo == 'DIFEYRO DOBLES'*/ true)
                                 ? `<button type="button" class="btn btn-danger btn-sm rounded-pill module-chip" onclick="getInfoUnits('${titulo}', 'warning')">
                                         <i class="bi bi-exclamation-triangle me-1"></i>
-                                        <span class="d-none d-xxl-inline">Sin reportar</span>
+                                        <span class="d-none d-xxl-inline">Mas de 24 h</span>
                                         <span class="d-xxl-none">S/rep.</span>
                                         <span class="badge text-bg-dark cont ms-1" id="cont-${titulo}-warning">${contWarning}</span>
                                     </button>`
@@ -116,9 +116,9 @@ export function create_button_module(data_group = {}, data, id_tag, filter) {
             `);
         }
     }
-    console.log(Object.keys(all_units_warning.warning['warning']).length);
-    $("#cont_unidades_24").text( Object.keys(all_units_warning.warning['warning']).length )
-    set_warning_groups(all_units_warning);
+    // console.log(Object.keys(all_units_warning.warning['warning']).length);
+    // $("#cont_unidades_24").text( Object.keys(all_units_warning.warning['warning']).length )
+    // set_warning_groups(all_units_warning);
 }
 
 export function create_table_module(data, id_table) {
