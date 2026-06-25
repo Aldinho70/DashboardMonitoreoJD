@@ -25,7 +25,7 @@ $(() => {
                 </button>-->
 
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-sm dropdown-toggle rounded-pill navbar-min__btn" id="user_Wialon" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle rounded-pill navbar-min__btn" id="user_Wialon" data-bs-toggle="dropdown" aria-expanded="false"></button>
                     <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0">
                         <li><a class="dropdown-item" id="btn-sarch_unit" onclick="searchUnit()">Buscar unidad</a></li>
                         <li><a class="dropdown-item" id="btn-logout" href="index.html">Cerrar sesion</a></li>
