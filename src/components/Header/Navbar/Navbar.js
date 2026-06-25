@@ -7,6 +7,12 @@ $(() => {
             </a>
 
             <div class="d-flex align-items-center gap-3 ms-auto navbar-min__actions">
+                <button class="btn btn-danger position-relative rounded-pill navbar-min__btn" onClick="getInfoUnits('warning', 'general');">
+                    <i class="bi bi-exclamation-octagon"></i>
+                    <span class="d-none d-md-inline ms-1">Unidades mas de 24 horas</span>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cont_notificacion_gral" id="cont_unidades_24">0</span>
+                </button>
+                
                 <button class="btn btn-warning position-relative rounded-pill navbar-min__btn" onclick="showModal('#modal-notificaciones');">
                     <i class="bi bi-bell-fill"></i>
                     <span class="d-none d-md-inline ms-1">Notificaciones</span>

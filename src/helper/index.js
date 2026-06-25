@@ -1,4 +1,5 @@
 ﻿import { env } from "../../config.js";
+import { set_warning_groups } from "../../index.js";
 
 export function createHTML_PanelbyStatus(data) {
     let objeto = {};
@@ -11,6 +12,9 @@ export function createHTML_PanelbyStatus(data) {
 }
 
 export function create_button_module(data_group = {}, data, id_tag, filter) {
+
+    let all_units_warning = { warning: {} }
+
     $(id_tag).empty();
     for (const titulo in data) {
         if (Object.keys(filter).includes(titulo)) {
@@ -25,6 +29,11 @@ export function create_button_module(data_group = {}, data, id_tag, filter) {
             const contGeneral = contApagadas + contRalenti + contMovimiento + contSinConexion + contWarning;
             const groupIdSafe = titulo.replace(/[\s\/]/g, "_");
             const titleIdSafe = _titulo.replaceAll(" ", "_");
+
+            all_units_warning.warning['warning'] = {
+                ...all_units_warning.warning['warning'],
+                ..._data.warning
+            };
 
             $(id_tag).append(`<!-- Grupo -->
                 <div class="toast fade show w-100 shadow-sm border-0 overflow-hidden mb-1 module-card module-card--compact" role="alert" aria-live="assertive" aria-atomic="true" id="${titleIdSafe}">
@@ -107,6 +116,9 @@ export function create_button_module(data_group = {}, data, id_tag, filter) {
             `);
         }
     }
+    console.log(Object.keys(all_units_warning.warning['warning']).length);
+    $("#cont_unidades_24").text( Object.keys(all_units_warning.warning['warning']).length )
+    set_warning_groups(all_units_warning);
 }
 
 export function create_table_module(data, id_table) {

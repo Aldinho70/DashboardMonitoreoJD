@@ -41,6 +41,8 @@ export const env = {
         'Juarez': ['Movimiento']
     },
 
+    module_critical_units: true,
+
     img: { 
         /* 'VACIO': './src/assets/img/logojd.png', 
         ...*/

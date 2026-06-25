@@ -12,9 +12,9 @@
                 }else if( units[key].gps.State == 'Offline' ){
                     offline[ key ] = units[key];
                 }else if( units[key].gps.State == 'Warning' ){
-                    // warning[ key ] = units[key]; 
+                    warning[ key ] = units[key]; 
                     //Se mod por que los compañeros de monitoreo quieren ver todas las unidades
-                    offline[ key ] = units[key];                    
+                    // offline[ key ] = units[key];                    
                 }
             }
         }

@@ -43,8 +43,8 @@ body {
 }
 
 .navbar-min__btn {
-  background: transparent;
-  color: #e5e7eb;
+  /* background: transparent; */
+  /* color: #000000; */
   border: 1px solid rgba(255, 255, 255, 0.24);
   font-size: 0.72rem;
   line-height: 1.1;

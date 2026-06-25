@@ -30,6 +30,7 @@ let _units;
 let _groups;
 let _unitsbyStatus;
 let _unitsfailedTemperature;
+let warning_group;
 
 export let _token;
 export let _conexion;
@@ -45,6 +46,10 @@ $(document).ready(() => {
         console.log('Actializando informacion...')
     }, 1 * 60 * 1000);
 });
+
+export const set_warning_groups = ( value ) =>{
+    warning_group = value;
+}
 
 export const _login = async (token) => {
     try {
@@ -157,7 +162,8 @@ const getUnits = async (units) => {
 }
 
 function getInfoUnits(modulo, estado, id_tag) {
-    const TODO = { ..._unitsbyStatus, ..._groups };
+    const TODO = { ..._unitsbyStatus, ..._groups, ...warning_group };
+    
     for (const _modulo in TODO) {
         if (_modulo == modulo) {
             const _units = TODO[_modulo];
